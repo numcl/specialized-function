@@ -1,0 +1,124 @@
+
+* Specialized-Function  [[https://travis-ci.org/numcl/specialized-function][https://travis-ci.org/numcl/specialized-function.svg?branch=master]]
+
+This library is part of NUMCL. It provides a macro `SPECIALIZED`
+that performs a Julia-like dispatch on the arguments, lazily compiling a
+type-specific version of the function from the same code.
+*The main target of this macro is the speed.*
+
+Currently it works on SBCL and CCL because it relies on SBCL/CCL's internal widetag interface
+to achieve the fast dispatch, and their implementation-specific interface to the
+environment object to collect the list of all lexical variables.
+
+[[https://asciinema.org/a/RW5a3mKqAYvOTvBp3i1x5yqoK][https://asciinema.org/a/RW5a3mKqAYvOTvBp3i1x5yqoK.svg]]
+
+** Why?
+
+Suppose computing a vector dot:
+
+#+begin_src lisp
+(defun dot-original (a b c)
+  (declare (optimize (speed 3) (safety 0) (debug 0)))
+  (loop
+     for ai across a
+     for bi across b
+     for i fixnum from 0
+     do (incf c (* ai bi)))
+  c)
+#+end_src
+
+This function is untyped and thus slow due to the calls to =generic-*= and
+=generic-+=.  While we could write a macro that automatically duplicates this
+code with some additional type declaration, notice that the number of types that
+this function accepts is large --- =a= could be a simple or non-simple array of
+4 float types, 4 float complex types, and the integer subtypes for the
+specialized arrays, such as =(unsigned-byte 4)=.  On SBCL x64, there are at
+least 56 variants -- 2*(4+4+12+7+1) -- and since there are 2 arguments, it
+should compile more than 2500 specialized variants. This wastes the compilation
+time because most combinations are not actually used in the user code.
+
+# 4 floats
+# 4 complex floats
+# unsigned-byte 1 2 3 4 7 8 15 16 31 32 63 64 -- 12
+# signed-byte   1 2 4 8 16 32 64 -- 7
+# fixnum
+
+Julia language has chosen a strategy that lazily compiles the typed variant of the function
+when the function was invoked with a new combination of types.
+Specialized-function provides this same functionality in Common Lisp ---
+lazy compilation of the type-specific variant of the same function.
+
+Note that this cannot be achieved by CLOS and the behavior is
+*orthogonal/complimentary* to the CLOS dispatch.  One critical difference is
+that CLOS generally assumes that the *different code/algorithm* 
+is used for implementing each method,
+ while specialized-function assumes that 
+*all specialized functions share the same code*.
+
+Another reason it cannot be achieved by CLOS is that CLOS in general cannot specify the
+array element types, which is critical in the high-performance code (while it is
+subject to a debate --- MOP can extend it to support array specifiers).
+
+Since they are orthogonal, you could also *combine CLOS and specialized-function* as follows:
+
+#+begin_src lisp
+
+(defmethod print-all ((obj array) (s stream))
+  (specialized (obj) ()
+    (loop for c across obj do (write-char c s))))
+
+(defmethod print-all ((obj list) (s stream))
+  (loop for elem in obj do (write elem s)))
+#+end_src
+
+Note that the first =print-all= for an =array= could dispatch between the
+=base-string= (with =base-char= elements) and =string= (with =character=
+elements).
+
+
+
+** How?
+
+Since the number of type combinations increases exponentially to the number of
+arguments, it is not possible to recompile a function with all combinations of
+types and dispatch on the arguments. Therefore, we compile each branch lazily
+and store them in a tree of arrays, where each node has 512 children (= `(expt 2 (1+
+sb-vm:n-widetag-bits))` in SBCL --- the additional bit is for detecting non-simple
+arrays). If the function is not available at the leaf node, it compiles
+a new version of the function.  The overhead of performing a dispatch is
+: [simple-array access]x[number of arguments]+[single function call].
+
+CCL does not obtain much speedup on the numerical code as it cannot infer the
+return type of =(aref A ...)= from the element-type declaration of =A=.
+
+On unsupported implementations, =SPECIALIZED= is equivalent to =PROGN=.  In the
+future, it is possible to switch to the slower, hashtable-based + type specifier
+based versions.
+
+The specialized code is dispatched against the argument types, but there are
+some saveats.  For array types, it dispatches based on the (upgraded) element
+type and the simpleness of the runtime array object.  It *does not* dispatch
+based on the rank and the dimensions, and once the function was called with an array
+of a certain rank, then the later calls assume that *the arguments are
+of the same rank*. This is based on a heuristic that *the same code/algorithm
+does not work for an array of the different ranks*. For example, it is unreasonable to
+assume that a code for matrix multiplication can process a 1D vector or a 3D tensor.
+
+For integer types (not arrays), all values that can be expressed within fixnum
+will dispatch to the fixnum-specialized branch. That is, entering a
+=(specialized (n) ...)= with =n= being =12= does not dispatch to =(unsinged-byte 4)=
+but simply to =fixnum=.
+
+=specialized= dispatches to the branches for =standard-object= and
+=structure-object=, but does not provide any dispatch for their subtypes.
+This should be handled by CLOS mainly because different
+classes require the different code/algorithm.
+
+
+** Author, License, Copyright
+
+Masataro Asai (guicho2.71828@gmail.com)
+
+Licensed under LGPL v3.
+
+Copyright (c) 2019 IBM Corporation
