@@ -54,6 +54,7 @@ Analogous to upgraded-array-element-type, but works on an object."
     ((complex single-float) '(complex single-float))
     ((complex double-float) '(complex double-float))
     ((complex long-float)   '(complex long-float))
+    (complex 'complex)
 
     (base-char     'base-char)
     (extended-char 'extended-char)
