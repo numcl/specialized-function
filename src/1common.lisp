@@ -31,21 +31,21 @@ Analogous to upgraded-array-element-type, but works on an object."
     ;; aggregate all numbers within fixnum range.
     ;; For example, (type-of 5) may return any valid supertype e.g. FIXNUM, (integer 5 5), (integer 0 5).
     ;; Same goes with bignums.
-    (fixnum  'fixnum)
-    (integer 'integer)
-    (ratio   'ratio)
-    (short-float 'short-float)
+    (fixnum       'fixnum)
+    (bignum       'bignum)
+    (ratio        'ratio)
+    (short-float  'short-float)
     (single-float 'single-float)
     (double-float 'double-float)
-    (long-float 'long-float)
+    (long-float   'long-float)
 
-    ((complex fixnum)  '(complex fixnum))
-    ((complex integer) '(complex integer))
-    ((complex ratio)   '(complex ratio))
-    ((complex short-float) '(complex short-float))
+    ((complex fixnum)       '(complex fixnum))
+    ((complex bignum)       '(complex bignum))
+    ((complex ratio)        '(complex ratio))
+    ((complex short-float)  '(complex short-float))
     ((complex single-float) '(complex single-float))
     ((complex double-float) '(complex double-float))
-    ((complex long-float) '(complex long-float))
+    ((complex long-float)   '(complex long-float))
 
     ;; weakness: cannot limit to base-char etc. But for now, characters are less important.
     (character 'character)
