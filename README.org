@@ -7,7 +7,6 @@ type-specific version of the function from the same code.
 *The main target of this macro is the speed.*
 
 Currently it works on SBCL and CCL because it relies on
- # SBCL/CCL's internal widetag interface to achieve the fast dispatch, and 
 their implementation-specific interface to the
 environment object to collect the list of all lexical variables.
 
@@ -23,7 +22,6 @@ Suppose computing a vector dot:
   (loop
      for ai across a
      for bi across b
-     for i fixnum from 0
      do (incf c (* ai bi)))
   c)
 #+end_src
