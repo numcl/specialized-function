@@ -69,7 +69,7 @@ NUMCL.  If not, see <http://www.gnu.org/licenses/>.
                          (array-element-types))))
             ,@(map 'list (lambda (type) `(,type ,(incf count)))
                    *base-types*)))
-        (defparameter +table-size+ ,count)))))
+        (defparameter +table-size+ ,(incf count))))))
 
 (setf *rebuild-widetag* nil)
 ;; base number types
