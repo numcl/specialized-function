@@ -23,6 +23,96 @@ NUMCL.  If not, see <http://www.gnu.org/licenses/>.
 (setf (documentation 'last-specialized-function 'function)
       "The symbol is fbound to the last function that was compiled by SPECILIZING1 macro, for debugging/tuning purpose.")
 
+
+(defparameter +table-size+ 0 "the size of the table.")
+(defparameter *base-types* (make-array 64 :adjustable t :fill-pointer 0))
+
+(defun array-element-types ()
+  (stable-sort (remove-duplicates
+                (mapcar #'upgraded-array-element-type
+                        (concatenate
+                         'list
+                         (map-product #'list
+                                      '(unsigned-byte signed-byte)
+                                      (iota 128 :start 1))
+                         *base-types*))
+                :test #'type=)
+               #'subtypep))
+
+(declaim (inline widetag))
+(defvar *rebuild-widetag* nil)
+(defun register-base-types (type &optional (*rebuild-widetag* *rebuild-widetag*))
+  (unless (find type *base-types* :test 'alexandria:type=)
+    (vector-push-extend type *base-types* (max 1 (length *base-types*))))
+  (when *rebuild-widetag*
+    (eval
+     (widetag-lambda))))
+
+(defun widetag-lambda ()
+  (let ((count -1))
+    (values
+     `(progn
+        (defun widetag (x)
+          "This function returns an integer based on the type of the object."
+          (etypecase x
+            ((simple-array * 1)
+             (etypecase x
+               ,@(mapcar (lambda (type) `((simple-array ,type 1) ,(incf count)))
+                         (array-element-types))))
+            (simple-array
+             (etypecase x
+               ,@(mapcar (lambda (type) `((simple-array ,type) ,(incf count)))
+                         (array-element-types))))
+            (array
+             (etypecase x
+               ,@(mapcar (lambda (type) `((array ,type) ,(incf count)))
+                         (array-element-types))))
+            ,@(map 'list (lambda (type) `(,type ,(incf count)))
+                   *base-types*)))
+        (defparameter +table-size+ ,count)))))
+
+(setf *rebuild-widetag* nil)
+;; base number types
+(register-base-types 'fixnum)
+#+64-bit
+(register-base-types '(unsigned-byte 64))
+#+32-bit
+(register-base-types '(unsigned-byte 32))
+#+64-bit
+(register-base-types '(signed-byte 64))
+#+32-bit
+(register-base-types '(signed-byte 32))
+(register-base-types 'bignum)
+(register-base-types 'ratio)
+(register-base-types 'short-float)
+(register-base-types 'single-float)
+(register-base-types 'double-float)
+(register-base-types 'long-float)
+
+(register-base-types `(complex ,(upgraded-complex-part-type 'fixnum))) ; could be (complex t)
+(register-base-types `(complex ,(upgraded-complex-part-type '(unsigned-byte 64))))
+(register-base-types `(complex ,(upgraded-complex-part-type '(unsigned-byte 32))))
+(register-base-types `(complex ,(upgraded-complex-part-type '(signed-byte 64))))
+(register-base-types `(complex ,(upgraded-complex-part-type '(signed-byte 32))))
+(register-base-types `(complex ,(upgraded-complex-part-type 'bignum)))
+(register-base-types `(complex ,(upgraded-complex-part-type 'ratio)))
+(register-base-types `(complex ,(upgraded-complex-part-type 'short-float)))
+(register-base-types `(complex ,(upgraded-complex-part-type 'single-float)))
+(register-base-types `(complex ,(upgraded-complex-part-type 'double-float)))
+(register-base-types `(complex ,(upgraded-complex-part-type 'long-float)))
+(register-base-types 'complex)
+
+(register-base-types 'base-char)
+(register-base-types 'extended-char)
+(register-base-types 'function)
+(register-base-types 'cons)
+(register-base-types 'symbol)
+(register-base-types 'structure-object)
+(register-base-types 'standard-object)
+(register-base-types t
+                     t)                 ;rebuild widetags
+(setf *rebuild-widetag* t)
+
 (declaim (inline upgraded-object-type))
 (defun upgraded-object-type (x)
   "Takes an object and returns a reasonable type declaration for the object.
@@ -110,3 +200,58 @@ type-of says ~a but there could be supertypes that are compatible to this functi
     `(macrolet ((,macro (&environment ,env)
                   ,@body))
        (,macro))))
+
+
+
+(declaim (inline table))
+(defun table (size)
+  (make-array size
+              :element-type '(or null function)
+              :initial-element nil))
+
+(deftype table (size) `(simple-array t (,size)))
+
+(defmacro specializing (args (&key verbose) &body decl-and-body &environment env)
+  (assert (every #'symbolp args))
+  (assert (typep verbose 'boolean))
+  (with-gensyms (table)
+    
+    (let ((lexvars (set-difference (find-lexical-variables env) args))
+          (widetags (make-gensym-list (length args))))
+      
+      `(let ((,table (load-time-value (table ,+table-size+)))
+             ,@(mapcar (lambda (var arg)
+                         `(,var (widetag ,arg)))
+                       widetags
+                       args))
+         (declare (optimize (speed 3) (debug 0) (safety 0)))
+
+         ,@(iter (for (v . rest) on widetags)
+                 (for compile-and-set =
+                      `(setf (symbol-function 'last-specialized-function)
+                             (compile nil
+                                      (specialized-function-form
+                                       ',args ',lexvars ',decl-and-body (list ,@args)))))
+                 (for default =
+                      (cond
+                        (rest `(table ,+table-size+))
+                        (verbose
+                         `(locally
+                              (declare (optimize (debug 1) (speed 1) (safety 1)))
+                            (format t "~&~<; ~@;Specializing ~a to ~{~a~^ ~}~:>"
+                                    (list ',args (mapcar #'upgraded-object-type (list ,@args))))
+                            ,compile-and-set))
+                        (t
+                         compile-and-set)))
+                 
+                 (collecting
+                  `(setf ,table
+                         (or (aref (the (table ,+table-size+) ,table) ,v)
+                             (setf (aref (the (table ,+table-size+) ,table) ,v)
+                                   ,default)))))
+         
+         (funcall (the
+                   (function ,(mapcar (constantly t) (append args lexvars)) *)
+                   ,table)
+                  ,@args
+                  ,@lexvars)))))
