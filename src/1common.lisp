@@ -32,6 +32,14 @@ Analogous to upgraded-array-element-type, but works on an object."
     ;; For example, (type-of 5) may return any valid supertype e.g. FIXNUM, (integer 5 5), (integer 0 5).
     ;; Same goes with bignums.
     (fixnum       'fixnum)
+    #+64-bit
+    ((unsigned-byte 64) '(unsigned-byte 64))
+    #+32-bit
+    ((unsigned-byte 32) '(unsigned-byte 32))
+    #+64-bit
+    ((signed-byte 64) '(signed-byte 64))
+    #+32-bit
+    ((signed-byte 32) '(signed-byte 32))
     (bignum       'bignum)
     (ratio        'ratio)
     (short-float  'short-float)
