@@ -41,7 +41,7 @@ NUMCL.  If not, see <http://www.gnu.org/licenses/>.
 
 (declaim (inline widetag))
 (defvar *rebuild-widetag* nil)
-(defun register-base-types (type &optional (*rebuild-widetag* *rebuild-widetag*))
+(defun register-base-type (type &optional (*rebuild-widetag* *rebuild-widetag*))
   (unless (find type *base-types* :test 'alexandria:type=)
     (vector-push-extend type *base-types* (max 1 (length *base-types*))))
   (when *rebuild-widetag*
@@ -73,45 +73,45 @@ NUMCL.  If not, see <http://www.gnu.org/licenses/>.
 
 (setf *rebuild-widetag* nil)
 ;; base number types
-(register-base-types 'fixnum)
+(register-base-type 'fixnum)
 #+64-bit
-(register-base-types '(unsigned-byte 64))
+(register-base-type '(unsigned-byte 64))
 #+32-bit
-(register-base-types '(unsigned-byte 32))
+(register-base-type '(unsigned-byte 32))
 #+64-bit
-(register-base-types '(signed-byte 64))
+(register-base-type '(signed-byte 64))
 #+32-bit
-(register-base-types '(signed-byte 32))
-(register-base-types 'bignum)
-(register-base-types 'ratio)
-(register-base-types 'short-float)
-(register-base-types 'single-float)
-(register-base-types 'double-float)
-(register-base-types 'long-float)
+(register-base-type '(signed-byte 32))
+(register-base-type 'bignum)
+(register-base-type 'ratio)
+(register-base-type 'short-float)
+(register-base-type 'single-float)
+(register-base-type 'double-float)
+(register-base-type 'long-float)
 
 ;; due to the bug in sbcl, below are not the realistic set of types
-;; (register-base-types `(complex ,(upgraded-complex-part-type 'fixnum))) ; could be (complex t)
-;; (register-base-types `(complex ,(upgraded-complex-part-type '(unsigned-byte 64))))
-;; (register-base-types `(complex ,(upgraded-complex-part-type '(unsigned-byte 32))))
-;; (register-base-types `(complex ,(upgraded-complex-part-type '(signed-byte 64))))
-;; (register-base-types `(complex ,(upgraded-complex-part-type '(signed-byte 32))))
-;; (register-base-types `(complex ,(upgraded-complex-part-type 'bignum)))
-;; (register-base-types `(complex ,(upgraded-complex-part-type 'ratio)))
-(register-base-types `(complex ,(upgraded-complex-part-type 'short-float)))
-(register-base-types `(complex ,(upgraded-complex-part-type 'single-float)))
-(register-base-types `(complex ,(upgraded-complex-part-type 'double-float)))
-(register-base-types `(complex ,(upgraded-complex-part-type 'long-float)))
-(register-base-types `(complex ,(upgraded-complex-part-type 'real)))
+;; (register-base-type `(complex ,(upgraded-complex-part-type 'fixnum))) ; could be (complex t)
+;; (register-base-type `(complex ,(upgraded-complex-part-type '(unsigned-byte 64))))
+;; (register-base-type `(complex ,(upgraded-complex-part-type '(unsigned-byte 32))))
+;; (register-base-type `(complex ,(upgraded-complex-part-type '(signed-byte 64))))
+;; (register-base-type `(complex ,(upgraded-complex-part-type '(signed-byte 32))))
+;; (register-base-type `(complex ,(upgraded-complex-part-type 'bignum)))
+;; (register-base-type `(complex ,(upgraded-complex-part-type 'ratio)))
+(register-base-type `(complex ,(upgraded-complex-part-type 'short-float)))
+(register-base-type `(complex ,(upgraded-complex-part-type 'single-float)))
+(register-base-type `(complex ,(upgraded-complex-part-type 'double-float)))
+(register-base-type `(complex ,(upgraded-complex-part-type 'long-float)))
+(register-base-type `(complex ,(upgraded-complex-part-type 'real)))
 
-(register-base-types 'base-char)
-(register-base-types 'extended-char)
-(register-base-types 'function)
-(register-base-types 'cons)
-(register-base-types 'symbol)
-(register-base-types 'structure-object)
-(register-base-types 'standard-object)
-(register-base-types t
-                     t)                 ;rebuild widetags
+(register-base-type 'base-char)
+(register-base-type 'extended-char)
+(register-base-type 'function)
+(register-base-type 'cons)
+(register-base-type 'symbol)
+(register-base-type 'structure-object)
+(register-base-type 'standard-object)
+(register-base-type t
+                    t)                 ;rebuild widetags
 (setf *rebuild-widetag* t)
 
 (declaim (inline upgraded-object-type))
