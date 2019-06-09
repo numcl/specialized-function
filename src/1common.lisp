@@ -23,10 +23,10 @@ NUMCL.  If not, see <http://www.gnu.org/licenses/>.
 (setf (documentation 'last-specialized-function 'function)
       "The symbol is fbound to the last function that was compiled by SPECILIZING1 macro, for debugging/tuning purpose.")
 
-;; This function is currently not in use as we use widetags.
 (declaim (inline upgraded-object-type))
 (defun upgraded-object-type (x)
-  "Analogous to upgraded-array-element-type, but works on an object."
+  "Takes an object and returns a reasonable type declaration for the object.
+Analogous to upgraded-array-element-type, but works on an object."
   (etypecase x
     ;; aggregate all numbers within fixnum range.
     ;; For example, (type-of 5) may return any valid supertype e.g. FIXNUM, (integer 5 5), (integer 0 5).
@@ -94,7 +94,7 @@ type-of says ~a but there could be supertypes that are compatible to this functi
 #+(or)
 (print (specialized-function-form 'x nil '((* 2 X)) 5))
 
-
+;; debug macro
 (defmacro in-compile-time ((&optional env) &body body)
   "macro for debugging"
   (with-gensyms (macro)
