@@ -47,8 +47,8 @@ Analogous to upgraded-array-element-type, but works on an object."
     ((complex double-float) '(complex double-float))
     ((complex long-float)   '(complex long-float))
 
-    ;; weakness: cannot limit to base-char etc. But for now, characters are less important.
-    (character 'character)
+    (base-char     'base-char)
+    (extended-char 'extended-char)
     
     ;; Arrays: Ignore dimensions, but keep the rank.
     ;; Rationale:
