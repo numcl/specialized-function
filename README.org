@@ -6,8 +6,9 @@ that performs a Julia-like dispatch on the arguments, lazily compiling a
 type-specific version of the function from the same code.
 *The main target of this macro is the speed.*
 
-Currently it works on SBCL and CCL because it relies on SBCL/CCL's internal widetag interface
-to achieve the fast dispatch, and their implementation-specific interface to the
+Currently it works on SBCL and CCL because it relies on
+ # SBCL/CCL's internal widetag interface to achieve the fast dispatch, and 
+their implementation-specific interface to the
 environment object to collect the list of all lexical variables.
 
 [[https://asciinema.org/a/RW5a3mKqAYvOTvBp3i1x5yqoK][https://asciinema.org/a/RW5a3mKqAYvOTvBp3i1x5yqoK.svg]]
@@ -79,21 +80,19 @@ elements).
 
 ** How?
 
-Since the number of type combinations increases exponentially to the number of
-arguments, it is not possible to recompile a function with all combinations of
-types and dispatch on the arguments. Therefore, we compile each branch lazily
-and store them in a tree of arrays, where each node has 512 children (= `(expt 2 (1+
-sb-vm:n-widetag-bits))` in SBCL --- the additional bit is for detecting non-simple
-arrays). If the function is not available at the leaf node, it compiles
+We compile each dispatched branch lazily and store them in a tree of vectors (each node is called a /table/).
+The number of entries in each table depends on the implementation's type-upgrading rule
+and the number of supported specialized array element types.
+There is a =widetag= function containing a nested =etypecase= rule
+which takes an object, investigate its type and returns the corresponding index in the table.
+
+If the function is not available at the leaf node, it compiles
 a new version of the function.  The overhead of performing a dispatch is
 : [simple-array access]x[number of arguments]+[single function call].
 
 CCL does not obtain much speedup on the numerical code as it cannot infer the
 return type of =(aref A ...)= from the element-type declaration of =A=.
-
-On unsupported implementations, =SPECIALIZED= is equivalent to =PROGN=.  In the
-future, it is possible to switch to the slower, hashtable-based + type specifier
-based versions.
+On unsupported implementations, =SPECIALIZED= is equivalent to =PROGN=.
 
 The specialized code is dispatched against the argument types, but there are
 some saveats.  For array types, it dispatches based on the (upgraded) element
@@ -111,9 +110,10 @@ but simply to =fixnum=.
 
 =specialized= dispatches to the branches for =standard-object= and
 =structure-object=, but does not provide any dispatch for their subtypes.
-This should be handled by CLOS mainly because different
-classes require the different code/algorithm.
-
+This should be handled by CLOS mainly because, as a heuristic, different
+classes would require the different code/algorithm.
+However, for specific purposes, we expose a function =register-base-type=
+which allows you to add a specific type to the tables.
 
 ** Author, License, Copyright
 
