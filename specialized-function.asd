@@ -5,7 +5,7 @@
   :mailto "guicho2.71828@gmail.com"
   :license "LGPL"
   :defsystem-depends-on ()
-  :depends-on (:trivia :alexandria :iterate :lisp-namespace :type-r)
+  :depends-on (:trivia :alexandria :iterate :lisp-namespace :type-r :trivial-cltl2)
   :pathname "src"
   :components ((:file "0package")
                (:file "1common")

@@ -22,10 +22,17 @@ NUMCL.  If not, see <http://www.gnu.org/licenses/>.
 (in-package :specialized-function)
 
 (defun find-lexical-variables (env)
-  (remove-duplicates
-   (mapcar #'car
-           (sb-c::lexenv-vars
-            (sb-c::coerce-to-lexenv env)))))
+  (remove-if
+   (lambda (v)
+     (multiple-value-match (trivial-cltl2:variable-information v env)
+       (((not :lexical) _ _)
+        t)
+       ((_ _ (alist ('ignore . var)))
+        var)))
+   (remove-duplicates
+    (mapcar #'car
+            (sb-c::lexenv-vars
+             (sb-c::coerce-to-lexenv env))))))
 
 
 
