@@ -182,7 +182,6 @@ type-of says ~a but there could be supertypes that are compatible to this functi
               (type-of x)))))
 
 
-(declaim (inline specialized-function-form))
 (defun specialized-function-form (vars lexvars decl-and-body vals)
   `(lambda (,@vars ,@lexvars)
      (declare (ignorable ,@lexvars))
