@@ -185,6 +185,7 @@ type-of says ~a but there could be supertypes that are compatible to this functi
 (declaim (inline specialized-function-form))
 (defun specialized-function-form (vars lexvars decl-and-body vals)
   `(lambda (,@vars ,@lexvars)
+     (declare (ignorable ,@lexvars))
      ,@(mapcar (lambda (var val)
                  `(declare (type ,(upgraded-object-type val) ,var)))
                vars
