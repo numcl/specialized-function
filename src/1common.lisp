@@ -51,27 +51,86 @@ NUMCL.  If not, see <http://www.gnu.org/licenses/>.
     (rebuild-widetag)))
 
 (defun widetag-lambda ()
-  (let ((count -1))
+  (let ((count -1)
+        (array-count (length (array-element-types))))
     (values
      `(progn
         (defun widetag (x)
           "This function returns an integer based on the type of the object."
           (declare (optimize (speed 2) (debug 0)))
-          (etypecase x
-            ((simple-array * 1)
-             (etypecase x
-               ,@(mapcar (lambda (type) `((simple-array ,type 1) ,(incf count)))
-                         (array-element-types))))
-            (simple-array
-             (etypecase x
-               ,@(mapcar (lambda (type) `((simple-array ,type) ,(incf count)))
-                         (array-element-types))))
-            (array
-             (etypecase x
-               ,@(mapcar (lambda (type) `((array ,type) ,(incf count)))
-                         (array-element-types))))
-            ,@(map 'list (lambda (type) `(,type ,(incf count)))
-                   *base-types*)))
+          (labels ((rec (x)
+                     (etypecase x
+                       ((simple-array * 1)
+                        (etypecase x
+                          ,@(mapcar (lambda (type) `((simple-array ,type 1) ,(incf count)))
+                                    (array-element-types))))
+                       
+                       (simple-array
+                        ;; access the underlying 1D simple array.
+                        ;; purpose: to reduce the function size.
+                        #+sbcl
+                        ,(progn
+                           (incf count array-count)
+                           `(+ ,array-count (the (integer 0 (,array-count))
+                                                 (sb-kernel:with-array-data ((v x) (s) (e))
+                                                   (declare (ignore s e))
+                                                   (rec v)))))
+                        #-sbcl
+                        (etypecase x
+                          ,@(mapcar (lambda (type) `((simple-array ,type) ,(incf count)))
+                                    (array-element-types))))
+                       
+                       (array
+                        ;; access the underlying 1D simple array.
+                        ;; purpose: to reduce the function size.
+                        #+sbcl
+                        ,(progn
+                           (incf count array-count)
+                           `(+ ,array-count (the (integer 0 (,array-count))
+                                                 (sb-kernel:with-array-data ((v x) (s) (e))
+                                                   (declare (ignore s e))
+                                                   (rec v)))))
+                        #-sbcl
+                        (etypecase x
+                          ,@(mapcar (lambda (type) `((array ,type) ,(incf count)))
+                                    (array-element-types))))
+
+                       ;; initial implementation: just enumerate typecase
+                       #+(or)
+                       ,@(map 'list (lambda (type) `(,type ,(incf count)))
+                              *base-types*)
+
+                       ;; second implementation: optimize for widetags
+                       ;; #+(or)
+                       ,@`((fixnum
+                            ;; fixnum tends to be detected by lowtags: both sbcl and ccl.
+                            ;; so let's detect it first.
+                            ,(incf count))
+                           (number
+                            ;; on sbcl, widetags for the similar types are grouped
+                            ;; together and can be tested in one check. I expect the
+                            ;; same for CCL.
+                            (etypecase x
+                              (real
+                               (etypecase x
+                                 (rational
+                                  (etypecase x
+                                    (integer
+                                     (etypecase x
+                                       ,@(map 'list (lambda (type) `(,type ,(incf count)))
+                                              (remove 'fixnum (remove-if-not #'integer-subtype-p *base-types*)))))
+                                    (ratio ,(incf count))))
+                                 (float
+                                  (etypecase x
+                                    ,@(map 'list (lambda (type) `(,type ,(incf count)))
+                                           (remove-if-not #'float-subtype-p *base-types*))))))
+                              (complex
+                               (etypecase x
+                                 ,@(map 'list (lambda (type) `(,type ,(incf count)))
+                                        (remove-if-not #'complex-type-p *base-types*))))))
+                           ,@(map 'list (lambda (type) `(,type ,(incf count)))
+                                  (remove-if #'number-subtype-p *base-types*))))))
+            (rec x)))
         (defparameter +table-size+ ,(incf count))))))
 
 ;; benchmark
