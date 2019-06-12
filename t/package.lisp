@@ -35,21 +35,22 @@
 
 (test (specialized-function :compile-at :run-time)
   (defun fn (a b)
-    (specializing (a b) ()
-      (print (type-of a))
-      (print (type-of b))
-      (print (aref a 0))
-      (print (aref b 0))
-      :ok))
+    (print (specialized-function::widetag a))
+    (print (specialized-function::widetag b))
+    (unwind-protect-case ()
+        (specializing (a b) ()
+          (print (type-of a))
+          (print (type-of b)))
+      (:normal
+       (print :ok))
+      (:abort
+       (print :ng))))
 
   ;; base case 
   (finishes
     (fn *a* *a*))
   (signals error
-    (fn *a* 1))                         ; because of incompatible signature
-                                        ; (aref for numbers)
-  (signals error
-    (fn *a* *b*))                       ; because of the different rank
+    (fn *a* *b*))
   (signals error
     (fn *b* *b*))
   (signals error
