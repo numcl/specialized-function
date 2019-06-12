@@ -282,13 +282,20 @@ type-of says ~a but there could be supertypes that are compatible to this functi
 
 
 (defun specialized-function-form (vars lexvars decl-and-body vals)
-  `(lambda (,@vars ,@lexvars)
-     (declare (ignorable ,@lexvars))
-     ,@(mapcar (lambda (var val)
-                 `(declare (type ,(upgraded-object-type val) ,var)))
-               vars
-               vals)
-     ,@decl-and-body))
+  (multiple-value-bind (decls body) (parse-body decl-and-body)
+    `(lambda (,@vars ,@lexvars)
+       (declare (ignorable ,@lexvars))
+       ,@(mapcar (lambda (var val)
+                   `(declare (type ,(upgraded-object-type val) ,var)))
+                 vars
+                 vals)
+       ,@decls
+       #-sbcl
+       ,@(mapcar (lambda (var val)
+                   `(check-type ,var ,(upgraded-object-type val)))
+                 vars
+                 vals)
+       ,@body)))
 
 #+(or)
 (print (specialized-function-form 'x nil '((* 2 X)) 5))
