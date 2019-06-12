@@ -6,8 +6,10 @@ that performs a Julia-like dispatch on the arguments, lazily compiling a
 type-specific version of the function from the same code.
 *The main target of this macro is the speed.*
 
-Currently it works on SBCL and CCL because it relies on
-their implementation-specific interface to the
+It supports SBCL and CCL and provides a limited support to other lisps.
+On other lisps, the code inside =specialized= is not able to read
+the variables that are not specified to be the dispatched arguments.
+This is because it relies on the implementation-specific interface to the
 environment object to collect the list of all lexical variables.
 
 [[https://asciinema.org/a/RW5a3mKqAYvOTvBp3i1x5yqoK][https://asciinema.org/a/RW5a3mKqAYvOTvBp3i1x5yqoK.svg]]
@@ -90,7 +92,9 @@ a new version of the function.  The overhead of performing a dispatch is
 
 CCL does not obtain much speedup on the numerical code as it cannot infer the
 return type of =(aref A ...)= from the element-type declaration of =A=.
-On unsupported implementations, =SPECIALIZED= is equivalent to =PROGN=.
+
+On unsupported implementations, =SPECIALIZED= is +equivalent to =PROGN=.+
+not able to pass values of lexical variables to the body inside =SPECIALIZED=.
 
 ** Caveats
 
