@@ -56,6 +56,7 @@ NUMCL.  If not, see <http://www.gnu.org/licenses/>.
      `(progn
         (defun widetag (x)
           "This function returns an integer based on the type of the object."
+          (declare (optimize (speed 2) (debug 0)))
           (etypecase x
             ((simple-array * 1)
              (etypecase x
