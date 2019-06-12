@@ -318,7 +318,7 @@ type-of says ~a but there could be supertypes that are compatible to this functi
 
 (deftype table (size) `(simple-array t (,size)))
 
-(defmacro specializing (args (&key verbose) &body decl-and-body &environment env)
+(defmacro specializing (args (&key verbose time) &body decl-and-body &environment env)
   (assert (every #'symbolp args))
   (assert (typep verbose 'boolean))
   (with-gensyms (table)
@@ -356,9 +356,9 @@ type-of says ~a but there could be supertypes that are compatible to this functi
                          (or (aref (the (table ,+table-size+) ,table) ,v)
                              (setf (aref (the (table ,+table-size+) ,table) ,v)
                                    ,default)))))
-         
+         (,(if time 'time 'progn)
          (funcall (the
                    (function ,(mapcar (constantly t) (append args lexvars)) *)
                    ,table)
                   ,@args
-                  ,@lexvars)))))
+                  ,@lexvars))))))
