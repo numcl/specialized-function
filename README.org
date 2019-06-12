@@ -92,16 +92,18 @@ CCL does not obtain much speedup on the numerical code as it cannot infer the
 return type of =(aref A ...)= from the element-type declaration of =A=.
 On unsupported implementations, =SPECIALIZED= is equivalent to =PROGN=.
 
-The specialized code is dispatched against the argument types, but there are
-some saveats.  For array types, it dispatches based on the (upgraded) element
-type and the simpleness of the runtime array object.  It *does not* dispatch
+** Caveats
+
+For array types, it dispatches based on the (upgraded) element
+type and the simpleness of the runtime array object.
+It *does not* dispatch
 based on the rank and the dimensions, and once the function was called with an array
 of a certain rank, then the later calls assume that *the arguments are
 of the same rank*. This is based on a heuristic that *the same code/algorithm
 does not work for an array of the different ranks*. For example, it is unreasonable to
 assume that a code for matrix multiplication can process a 1D vector or a 3D tensor.
 
-For integer types (not arrays), all values that can be expressed within fixnum
+For integer types, all values that can be expressed within fixnum
 will dispatch to the fixnum-specialized branch. That is, entering a
 =(specialized (n) ...)= with =n= being =12= does not dispatch to =(unsinged-byte 4)=
 but simply to =fixnum=.
