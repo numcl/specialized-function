@@ -60,26 +60,8 @@ NUMCL.  If not, see <http://www.gnu.org/licenses/>.
           (declare (optimize (speed 2) (debug 0)))
           (labels ((rec (x)
                      (etypecase x
-                       ((simple-array * 1)
-                        (etypecase x
-                          ,@(mapcar (lambda (type) `((simple-array ,type 1) ,(incf count)))
-                                    (array-element-types))))
-                       
-                       (simple-array
-                        ;; access the underlying 1D simple array.
-                        ;; purpose: to reduce the function size.
-                        #+sbcl
-                        ,(progn
-                           (incf count array-count)
-                           `(+ ,array-count (the (integer 0 (,array-count))
-                                                 (sb-kernel:with-array-data ((v x) (s) (e))
-                                                   (declare (ignore s e))
-                                                   (rec v)))))
-                        #-sbcl
-                        (etypecase x
-                          ,@(mapcar (lambda (type) `((simple-array ,type) ,(incf count)))
-                                    (array-element-types))))
-                       
+                       ,@(mapcar (lambda (type) `((simple-array ,type) ,(incf count)))
+                                 (array-element-types))
                        (array
                         ;; access the underlying 1D simple array.
                         ;; purpose: to reduce the function size.
