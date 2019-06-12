@@ -282,7 +282,7 @@ type-of says ~a but there could be supertypes that are compatible to this functi
 
 
 (defun specialized-function-form (vars lexvars decl-and-body vals)
-  (multiple-value-bind (decls body) (parse-body decl-and-body)
+  (multiple-value-bind (body decls) (parse-body decl-and-body)
     `(lambda (,@vars ,@lexvars)
        (declare (ignorable ,@lexvars))
        ,@(mapcar (lambda (var val)

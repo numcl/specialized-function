@@ -39,6 +39,7 @@
     (print (specialized-function::widetag b))
     (unwind-protect-case ()
         (specializing (a b) ()
+          (declare (optimize))
           (print (type-of a))
           (print (type-of b)))
       (:normal
