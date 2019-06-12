@@ -39,6 +39,8 @@ NUMCL.  If not, see <http://www.gnu.org/licenses/>.
                 :test #'type=)
                #'subtypep))
 
+;; this is commented out because it increases the compilation time significantly
+#+(or)
 (declaim (inline widetag))
 (defvar *rebuild-widetag* nil)
 (defun register-base-type (type &optional (*rebuild-widetag* *rebuild-widetag*))
