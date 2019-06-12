@@ -21,9 +21,5 @@ NUMCL.  If not, see <http://www.gnu.org/licenses/>.
 
 (in-package :specialized-function)
 
-(defmacro specializing (args (&key verbose) &body decl-and-body)
-  (assert (every #'symbolp args))
-  (assert (typep verbose 'boolean))
-  (simple-style-warning "This implementation does not support SPECIALIZING macro.")
-  `(progn
-     ,@decl-and-body))
+(defun find-lexical-variables (env)
+  nil)
