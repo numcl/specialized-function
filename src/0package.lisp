@@ -25,5 +25,6 @@ NUMCL.  If not, see <http://www.gnu.org/licenses/>.
   (:use :cl :trivia :alexandria :iterate :lisp-namespace :type-r)
   (:export
    #:specializing
-   #:register-base-type))
+   #:register-base-type
+   #:last-specialized-function))
 
