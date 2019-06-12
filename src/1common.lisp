@@ -43,12 +43,12 @@ NUMCL.  If not, see <http://www.gnu.org/licenses/>.
 #+(or)
 (declaim (inline widetag))
 (defvar *rebuild-widetag* nil)
+(defun rebuild-widetag () (eval (widetag-lambda)))
 (defun register-base-type (type &optional (*rebuild-widetag* *rebuild-widetag*))
   (unless (find type *base-types* :test 'alexandria:type=)
     (vector-push-extend type *base-types* (max 1 (length *base-types*))))
   (when *rebuild-widetag*
-    (eval
-     (widetag-lambda))))
+    (rebuild-widetag)))
 
 (defun widetag-lambda ()
   (let ((count -1))
