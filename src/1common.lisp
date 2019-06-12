@@ -73,6 +73,61 @@ NUMCL.  If not, see <http://www.gnu.org/licenses/>.
                    *base-types*)))
         (defparameter +table-size+ ,(incf count))))))
 
+;; benchmark
+
+(defun benchmark ()
+  (rebuild-widetag)
+  (let ((array
+         (vector 100
+                 (1+ most-positive-fixnum)
+                 1/2
+                 0.0s0
+                 0.0f0
+                 0.0d0
+                 0.0l0
+                 #C(0.0s0 0.0s0)
+                 #C(0.0f0 0.0f0)
+                 #C(0.0d0 0.0d0)
+                 #C(0.0l0 0.0l0)
+                 #C(1 1)
+                 #C(1/2 1/2)
+                 #\c
+                 'a
+                 nil
+                 (cons 1 2)
+                 (lambda (x) x)
+                 (make-array 1 :element-type t)
+                 (make-array 1 :element-type 'fixnum)
+                 (make-array 1 :element-type 'single-float)
+                 (make-array 1 :element-type 'double-float)
+                 (make-array 1 :element-type 'bit)
+                 (make-array 1 :element-type 'character)
+                 (make-array 1 :element-type t             :displaced-to (make-array 1 :element-type t))
+                 (make-array 1 :element-type 'fixnum       :displaced-to (make-array 1 :element-type 'fixnum))
+                 (make-array 1 :element-type 'single-float :displaced-to (make-array 1 :element-type 'single-float))
+                 (make-array 1 :element-type 'double-float :displaced-to (make-array 1 :element-type 'double-float))
+                 (make-array 1 :element-type 'bit          :displaced-to (make-array 1 :element-type 'bit))
+                 (make-array 1 :element-type 'character    :displaced-to (make-array 1 :element-type 'character))
+                 (make-array '(2 2) :element-type t)
+                 (make-array '(2 2) :element-type 'fixnum)
+                 (make-array '(2 2) :element-type 'single-float)
+                 (make-array '(2 2) :element-type 'double-float)
+                 (make-array '(2 2) :element-type 'bit)
+                 (make-array '(2 2) :element-type 'character)
+                 (make-array '(2 2) :element-type t             :displaced-to (make-array '(2 2) :element-type t))
+                 (make-array '(2 2) :element-type 'fixnum       :displaced-to (make-array '(2 2) :element-type 'fixnum))
+                 (make-array '(2 2) :element-type 'single-float :displaced-to (make-array '(2 2) :element-type 'single-float))
+                 (make-array '(2 2) :element-type 'double-float :displaced-to (make-array '(2 2) :element-type 'double-float))
+                 (make-array '(2 2) :element-type 'bit          :displaced-to (make-array '(2 2) :element-type 'bit))
+                 (make-array '(2 2) :element-type 'character    :displaced-to (make-array '(2 2) :element-type 'character)))))
+    (loop repeat 5
+       do
+         (time
+          (loop repeat #+sbcl 1000000 #+ccl 10000 do
+               (loop for e across array do
+                    (widetag e)))))))
+
+
 (setf *rebuild-widetag* nil)
 ;; base number types
 (register-base-type 'fixnum)

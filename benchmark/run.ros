@@ -1,0 +1,27 @@
+#!/bin/sh
+#|-*- mode:lisp -*-|#
+#|
+exec ros -Q -- $0 "$@"
+|#
+(progn ;;init forms
+  (ros:ensure-asdf)
+  #+quicklisp(ql:quickload '(specialized-function) :silent t)
+  )
+
+(defpackage :ros.script.run.3769305419
+  (:use :cl))
+(in-package :ros.script.run.3769305419)
+
+(defun main (&rest argv)
+  (declare (ignorable argv))
+  (format t "~%~@{~a~^~%~}"
+          (machine-type)
+          (machine-version)
+          (machine-instance)
+          (software-type)
+          (software-version)
+          (lisp-implementation-type)
+          (lisp-implementation-version))
+  (specialized-function::benchmark)
+  (disassemble #'specialized-function::widetag))
+;;; vim: set ft=lisp lisp:
