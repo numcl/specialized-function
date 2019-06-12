@@ -1,0 +1,49 @@
+
+x86_64
+Intel(R) Core(TM) i5-6300U CPU @ 2.40GHz
+masataro-ThinkPad-T460
+Linux
+4.4.0-150-generic
+Clozure Common Lisp
+Version 1.11.5/v1.11.5  (LinuxX8664)
+;Compiler warnings :
+;   Clause (EXTENDED-CHAR 57) ignored in ETYPECASE form - shadowed by (BASE-CHAR 56) .
+(LOOP ITERATE:REPEAT 10000 DO (LOOP ITERATE:FOR SPECIALIZED-FUNCTION::E SPECIALIZED-FUNCTION::ACROSS ARRAY DO (SPECIALIZED-FUNCTION::WIDETAG SPECIALIZED-FUNCTION::E)))
+took 697,991 microseconds (0.697991 seconds) to run.
+During that period, and with 4 available CPU cores,
+     696,000 microseconds (0.696000 seconds) were spent in user mode
+           0 microseconds (0.000000 seconds) were spent in system mode
+(LOOP ITERATE:REPEAT 10000 DO (LOOP ITERATE:FOR SPECIALIZED-FUNCTION::E SPECIALIZED-FUNCTION::ACROSS ARRAY DO (SPECIALIZED-FUNCTION::WIDETAG SPECIALIZED-FUNCTION::E)))
+took 716,315 microseconds (0.716315 seconds) to run.
+During that period, and with 4 available CPU cores,
+     708,000 microseconds (0.708000 seconds) were spent in user mode
+           0 microseconds (0.000000 seconds) were spent in system mode
+(LOOP ITERATE:REPEAT 10000 DO (LOOP ITERATE:FOR SPECIALIZED-FUNCTION::E SPECIALIZED-FUNCTION::ACROSS ARRAY DO (SPECIALIZED-FUNCTION::WIDETAG SPECIALIZED-FUNCTION::E)))
+took 677,139 microseconds (0.677139 seconds) to run.
+During that period, and with 4 available CPU cores,
+     676,000 microseconds (0.676000 seconds) were spent in user mode
+           0 microseconds (0.000000 seconds) were spent in system mode
+(LOOP ITERATE:REPEAT 10000 DO (LOOP ITERATE:FOR SPECIALIZED-FUNCTION::E SPECIALIZED-FUNCTION::ACROSS ARRAY DO (SPECIALIZED-FUNCTION::WIDETAG SPECIALIZED-FUNCTION::E)))
+took 697,618 microseconds (0.697618 seconds) to run.
+During that period, and with 4 available CPU cores,
+     692,000 microseconds (0.692000 seconds) were spent in user mode
+           0 microseconds (0.000000 seconds) were spent in system mode
+(LOOP ITERATE:REPEAT 10000 DO (LOOP ITERATE:FOR SPECIALIZED-FUNCTION::E SPECIALIZED-FUNCTION::ACROSS ARRAY DO (SPECIALIZED-FUNCTION::WIDETAG SPECIALIZED-FUNCTION::E)))
+took 657,235 microseconds (0.657235 seconds) to run.
+During that period, and with 4 available CPU cores,
+     652,000 microseconds (0.652000 seconds) were spent in user mode
+           0 microseconds (0.000000 seconds) were spent in system mode
+    (recover-fn-from-rip)                   ;     [7]
+    (cmpl ($ 8) (% nargs))                  ;    [14]
+    (jne L45)                               ;    [17]
+    (pushq (% rbp))                         ;    [19]
+    (movq (% rsp) (% rbp))                  ;    [20]
+    (pushq (% arg_z))                       ;    [23]
+    (movl ($ 8) (% nargs))                  ;    [24]
+    (movq (@ '#<Compiled-function (:INTERNAL SPECIALIZED-FUNCTION::REC SPECIALIZED-FUNCTION::WIDETAG) (Non-Global)  #x302000EB3ACF> (% fn)) (% temp0)) ;    [29]
+    (leaveq)                                ;    [36]
+    (movq (% fn) (% temp1))                 ;    [37]
+    (movq (% temp0) (% fn))                 ;    [40]
+    (jmpq (% fn))                           ;    [43]
+L45
+    (uuo-error-wrong-number-of-args)        ;    [52]

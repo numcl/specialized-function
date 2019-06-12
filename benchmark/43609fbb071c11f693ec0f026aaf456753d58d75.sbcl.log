@@ -1,0 +1,378 @@
+
+X86-64
+Intel(R) Core(TM) i5-6300U CPU @ 2.40GHz
+masataro-ThinkPad-T460
+Linux
+4.4.0-150-generic
+SBCL
+1.5.2
+Evaluation took:
+  0.459 seconds of real time
+  0.460000 seconds of total run time (0.460000 user, 0.000000 system)
+  100.22% CPU
+  1,145,892,420 processor cycles
+  0 bytes consed
+  
+Evaluation took:
+  0.441 seconds of real time
+  0.436000 seconds of total run time (0.436000 user, 0.000000 system)
+  98.87% CPU
+  1,101,515,894 processor cycles
+  0 bytes consed
+  
+Evaluation took:
+  0.438 seconds of real time
+  0.440000 seconds of total run time (0.440000 user, 0.000000 system)
+  100.46% CPU
+  1,092,570,314 processor cycles
+  0 bytes consed
+  
+Evaluation took:
+  0.430 seconds of real time
+  0.428000 seconds of total run time (0.428000 user, 0.000000 system)
+  99.53% CPU
+  1,073,659,600 processor cycles
+  0 bytes consed
+  
+Evaluation took:
+  0.434 seconds of real time
+  0.436000 seconds of total run time (0.436000 user, 0.000000 system)
+  100.46% CPU
+  1,083,020,786 processor cycles
+  0 bytes consed
+  
+; disassembly for SPECIALIZED-FUNCTION::WIDETAG
+; Size: 1286 bytes. Origin: #x52DABB93 (segment 1 of 2)
+; BB93:       EB03             JMP L1                         ; no-arg-parsing entry point
+; BB95: L0:   8F4508           POP QWORD PTR [RBP+8]
+; Origin #x52DABB98 (segment 2 of 2)
+; BB98: L1:   418D40F1         LEA EAX, [R8-15]               ; no-arg-parsing entry point
+; BB9C:       A80F             TEST AL, 15
+; BB9E:       0F85E6010000     JNE L27
+; BBA4:       418B40F1         MOV EAX, [R8-15]
+; BBA8:       2C85             SUB AL, -123
+; BBAA:       3C60             CMP AL, 96
+; BBAC:       0F87D8010000     JNBE L27
+; BBB2:       418078F1D5       CMP BYTE PTR [R8-15], -43
+; BBB7:       0F84C6010000     JEQ L26
+; BBBD:       418078F185       CMP BYTE PTR [R8-15], -123
+; BBC2:       0F84B1010000     JEQ L25
+; BBC8:       418078F189       CMP BYTE PTR [R8-15], -119
+; BBCD:       0F849C010000     JEQ L24
+; BBD3:       418078F18D       CMP BYTE PTR [R8-15], -115
+; BBD8:       0F8487010000     JEQ L23
+; BBDE:       418078F191       CMP BYTE PTR [R8-15], -111
+; BBE3:       0F8472010000     JEQ L22
+; BBE9:       418078F195       CMP BYTE PTR [R8-15], -107
+; BBEE:       0F845D010000     JEQ L21
+; BBF4:       418078F199       CMP BYTE PTR [R8-15], -103
+; BBF9:       0F8448010000     JEQ L20
+; BBFF:       418078F19D       CMP BYTE PTR [R8-15], -99
+; BC04:       0F8433010000     JEQ L19
+; BC0A:       418078F1A1       CMP BYTE PTR [R8-15], -95
+; BC0F:       0F841E010000     JEQ L18
+; BC15:       418078F1A5       CMP BYTE PTR [R8-15], -91
+; BC1A:       0F8409010000     JEQ L17
+; BC20:       418078F1A9       CMP BYTE PTR [R8-15], -87
+; BC25:       0F84F4000000     JEQ L16
+; BC2B:       418078F1B1       CMP BYTE PTR [R8-15], -79
+; BC30:       0F84E2000000     JEQ L15
+; BC36:       418078F1B5       CMP BYTE PTR [R8-15], -75
+; BC3B:       0F84D0000000     JEQ L14
+; BC41:       418078F1B9       CMP BYTE PTR [R8-15], -71
+; BC46:       0F84BE000000     JEQ L13
+; BC4C:       418078F1BD       CMP BYTE PTR [R8-15], -67
+; BC51:       0F84AC000000     JEQ L12
+; BC57:       418078F1AD       CMP BYTE PTR [R8-15], -83
+; BC5C:       0F849A000000     JEQ L11
+; BC62:       418078F1C1       CMP BYTE PTR [R8-15], -63
+; BC67:       0F8488000000     JEQ L10
+; BC6D:       418078F1C5       CMP BYTE PTR [R8-15], -59
+; BC72:       747A             JEQ L9
+; BC74:       418078F1C9       CMP BYTE PTR [R8-15], -55
+; BC79:       746C             JEQ L8
+; BC7B:       418078F1CD       CMP BYTE PTR [R8-15], -51
+; BC80:       745E             JEQ L7
+; BC82:       418078F1D1       CMP BYTE PTR [R8-15], -47
+; BC87:       7450             JEQ L6
+; BC89:       418078F1E1       CMP BYTE PTR [R8-15], -31
+; BC8E:       7442             JEQ L5
+; BC90:       418078F1E5       CMP BYTE PTR [R8-15], -27
+; BC95:       7434             JEQ L4
+; BC97:       418078F1D9       CMP BYTE PTR [R8-15], -39
+; BC9C:       750B             JNE L3
+; BC9E:       BA2E000000       MOV EDX, 46
+; BCA3: L2:   488BE5           MOV RSP, RBP
+; BCA6:       F8               CLC
+; BCA7:       5D               POP RBP
+; BCA8:       C3               RET
+; BCA9: L3:   4883EC10         SUB RSP, 16
+; BCAD:       498BD0           MOV RDX, R8
+; BCB0:       488B3D49FEFFFF   MOV RDI, [RIP-439]             ; '((SIMPLE-ARRAY
+                                                              ;    BIT 1) ..)
+; BCB7:       B904000000       MOV ECX, 4
+; BCBC:       48892C24         MOV [RSP], RBP
+; BCC0:       488BEC           MOV RBP, RSP
+; BCC3:       B818FFAD52       MOV EAX, #x52ADFF18            ; #<FDEFN SB-KERNEL:ETYPECASE-FAILURE>
+; BCC8:       FFD0             CALL RAX
+; BCCA:       90               NOP
+; BCCB: L4:   BA2C000000       MOV EDX, 44
+; BCD0:       EBD1             JMP L2
+; BCD2: L5:   BA2A000000       MOV EDX, 42
+; BCD7:       EBCA             JMP L2
+; BCD9: L6:   BA28000000       MOV EDX, 40
+; BCDE:       EBC3             JMP L2
+; BCE0: L7:   BA26000000       MOV EDX, 38
+; BCE5:       EBBC             JMP L2
+; BCE7: L8:   BA24000000       MOV EDX, 36
+; BCEC:       EBB5             JMP L2
+; BCEE: L9:   BA22000000       MOV EDX, 34
+; BCF3:       EBAE             JMP L2
+; BCF5: L10:  BA20000000       MOV EDX, 32
+; BCFA:       EBA7             JMP L2
+; BCFC: L11:  BA1E000000       MOV EDX, 30
+; BD01:       EBA0             JMP L2
+; BD03: L12:  BA1C000000       MOV EDX, 28
+; BD08:       EB99             JMP L2
+; BD0A: L13:  BA1A000000       MOV EDX, 26
+; BD0F:       EB92             JMP L2
+; BD11: L14:  BA18000000       MOV EDX, 24
+; BD16:       EB8B             JMP L2
+; BD18: L15:  BA16000000       MOV EDX, 22
+; BD1D:       EB84             JMP L2
+; BD1F: L16:  BA14000000       MOV EDX, 20
+; BD24:       E97AFFFFFF       JMP L2
+; BD29: L17:  BA12000000       MOV EDX, 18
+; BD2E:       E970FFFFFF       JMP L2
+; BD33: L18:  BA10000000       MOV EDX, 16
+; BD38:       E966FFFFFF       JMP L2
+; BD3D: L19:  BA0E000000       MOV EDX, 14
+; BD42:       E95CFFFFFF       JMP L2
+; BD47: L20:  BA0C000000       MOV EDX, 12
+; BD4C:       E952FFFFFF       JMP L2
+; BD51: L21:  BA0A000000       MOV EDX, 10
+; BD56:       E948FFFFFF       JMP L2
+; BD5B: L22:  BA08000000       MOV EDX, #x8                   ; is_lisp_thread
+; BD60:       E93EFFFFFF       JMP L2
+; BD65: L23:  BA06000000       MOV EDX, 6
+; BD6A:       E934FFFFFF       JMP L2
+; BD6F: L24:  BA04000000       MOV EDX, 4
+; BD74:       E92AFFFFFF       JMP L2
+; BD79: L25:  BA02000000       MOV EDX, 2
+; BD7E:       E920FFFFFF       JMP L2
+; BD83: L26:  31D2             XOR EDX, EDX
+; BD85:       E919FFFFFF       JMP L2
+; BD8A: L27:  418D40F1         LEA EAX, [R8-15]
+; BD8E:       A80F             TEST AL, 15
+; BD90:       750E             JNE L28
+; BD92:       418B40F1         MOV EAX, [R8-15]
+; BD96:       2C81             SUB AL, -127
+; BD98:       3C64             CMP AL, 100
+; BD9A:       0F86A3020000     JBE L60
+; BDA0: L28:  418D40F1         LEA EAX, [R8-15]
+; BDA4:       A80F             TEST AL, 15
+; BDA6:       750B             JNE L29
+; BDA8:       418078F181       CMP BYTE PTR [R8-15], -127
+; BDAD:       0F833C020000     JNB L58
+; BDB3: L29:  41F6C001         TEST R8B, 1
+; BDB7:       0F8428020000     JEQ L57
+; BDBD:       418D40F1         LEA EAX, [R8-15]
+; BDC1:       A801             TEST AL, 1
+; BDC3:       0F8501010000     JNE L41
+; BDC9:       3C0A             CMP AL, 10
+; BDCB:       0F84F9000000     JEQ L41
+; BDD1:       A80F             TEST AL, 15
+; BDD3:       750B             JNE L30
+; BDD5:       418078F129       CMP BYTE PTR [R8-15], 41
+; BDDA:       0F86EA000000     JBE L41
+; BDE0: L30:  418D40B7         LEA EAX, [R8-73]
+; BDE4:       A9FF80FFFF       TEST EAX, -32513
+; BDE9:       0F84D1000000     JEQ L40
+; BDEF:       4180F849         CMP R8B, 73
+; BDF3:       750A             JNE L31
+; BDF5:       BAA6000000       MOV EDX, 166
+; BDFA:       E9A4FEFFFF       JMP L2
+; BDFF: L31:  418D40F5         LEA EAX, [R8-11]
+; BE03:       A80F             TEST AL, 15
+; BE05:       0F84AB000000     JEQ L39
+; BE0B:       4981F817001050   CMP R8, #x50100017             ; NIL
+; BE12:       740C             JEQ L32
+; BE14:       418D40F9         LEA EAX, [R8-7]
+; BE18:       A80F             TEST AL, 15
+; BE1A:       0F848C000000     JEQ L38
+; BE20: L32:  4981F817001050   CMP R8, #x50100017             ; NIL
+; BE27:       7479             JEQ L37
+; BE29:       418D40F1         LEA EAX, [R8-15]
+; BE2D:       A80F             TEST AL, 15
+; BE2F:       7507             JNE L33
+; BE31:       418078F145       CMP BYTE PTR [R8-15], 69
+; BE36:       746A             JEQ L37
+; BE38: L33:  418D40FD         LEA EAX, [R8-3]
+; BE3C:       A80F             TEST AL, 15
+; BE3E:       751A             JNE L35
+; BE40:       418B4001         MOV EAX, [R8+1]
+; BE44:       83780902         CMP DWORD PTR [RAX+9], 2
+; BE48:       7E08             JLE L34
+; BE4A:       488B4025         MOV RAX, [RAX+37]
+; BE4E:       488B4009         MOV RAX, [RAX+9]
+; BE52: L34:  483D83103050     CMP RAX, #x50301083            ; #<SB-KERNEL:LAYOUT for STRUCTURE-OBJECT {50301083}>
+; BE58:       743C             JEQ L36
+; BE5A: L35:  4883EC10         SUB RSP, 16
+; BE5E:       488B15B3FCFFFF   MOV RDX, [RIP-845]             ; #<SB-KERNEL::CLASSOID-CELL STANDARD-OBJECT>
+; BE65:       498BF8           MOV RDI, R8
+; BE68:       B904000000       MOV ECX, 4
+; BE6D:       48892C24         MOV [RSP], RBP
+; BE71:       488BEC           MOV RBP, RSP
+; BE74:       B8F806AE52       MOV EAX, #x52AE06F8            ; #<FDEFN SB-KERNEL:CLASSOID-CELL-TYPEP>
+; BE79:       FFD0             CALL RAX
+; BE7B:       4881FA17001050   CMP RDX, #x50100017            ; NIL
+; BE82:       BAB0000000       MOV EDX, 176
+; BE87:       41BBB2000000     MOV R11D, 178
+; BE8D:       490F44D3         CMOVEQ RDX, R11
+; BE91:       E90DFEFFFF       JMP L2
+; BE96: L36:  BAAE000000       MOV EDX, 174
+; BE9B:       E903FEFFFF       JMP L2
+; BEA0:       EBB0             JMP L34
+; BEA2: L37:  BAAC000000       MOV EDX, 172
+; BEA7:       E9F7FDFFFF       JMP L2
+; BEAC: L38:  BAAA000000       MOV EDX, 170
+; BEB1:       E9EDFDFFFF       JMP L2
+; BEB6: L39:  BAA8000000       MOV EDX, 168
+; BEBB:       E9E3FDFFFF       JMP L2
+; BEC0: L40:  BAA4000000       MOV EDX, 164
+; BEC5:       E9D9FDFFFF       JMP L2
+; BECA: L41:  418D40F1         LEA EAX, [R8-15]
+; BECE:       A801             TEST AL, 1
+; BED0:       7567             JNE L46
+; BED2:       3C0A             CMP AL, 10
+; BED4:       7463             JEQ L46
+; BED6:       A80F             TEST AL, 15
+; BED8:       7507             JNE L42
+; BEDA:       418078F11D       CMP BYTE PTR [R8-15], 29
+; BEDF:       7658             JBE L46
+; BEE1: L42:  418B40F1         MOV EAX, [R8-15]
+; BEE5:       2C21             SUB AL, 33
+; BEE7:       3C08             CMP AL, 8
+; BEE9:       772C             JNBE L45
+; BEEB:       418078F125       CMP BYTE PTR [R8-15], 37
+; BEF0:       741B             JEQ L44
+; BEF2:       418078F129       CMP BYTE PTR [R8-15], 41
+; BEF7:       740A             JEQ L43
+; BEF9:       BAA2000000       MOV EDX, 162
+; BEFE:       E9A0FDFFFF       JMP L2
+; BF03: L43:  BAA0000000       MOV EDX, 160
+; BF08:       E996FDFFFF       JMP L2
+; BF0D: L44:  BA9E000000       MOV EDX, 158
+; BF12:       E98CFDFFFF       JMP L2
+; BF17: L45:  4883EC10         SUB RSP, 16
+; BF1B:       498BD0           MOV RDX, R8
+; BF1E:       488B3D03FCFFFF   MOV RDI, [RIP-1021]            ; '(REAL COMPLEX)
+; BF25:       B904000000       MOV ECX, 4
+; BF2A:       48892C24         MOV [RSP], RBP
+; BF2E:       488BEC           MOV RBP, RSP
+; BF31:       B818FFAD52       MOV EAX, #x52ADFF18            ; #<FDEFN SB-KERNEL:ETYPECASE-FAILURE>
+; BF36:       FFD0             CALL RAX
+; BF38:       90               NOP
+; BF39: L46:  418D40F1         LEA EAX, [R8-15]
+; BF3D:       A801             TEST AL, 1
+; BF3F:       7525             JNE L49
+; BF41:       A80F             TEST AL, 15
+; BF43:       7507             JNE L47
+; BF45:       418078F115       CMP BYTE PTR [R8-15], 21
+; BF4A:       761A             JBE L49
+; BF4C: L47:  4180F819         CMP R8B, 25
+; BF50:       740A             JEQ L48
+; BF52:       BA9C000000       MOV EDX, 156
+; BF57:       E947FDFFFF       JMP L2
+; BF5C: L48:  BA9A000000       MOV EDX, 154
+; BF61:       E93DFDFFFF       JMP L2
+; BF66: L49:  418D40F1         LEA EAX, [R8-15]
+; BF6A:       A801             TEST AL, 1
+; BF6C:       7511             JNE L50
+; BF6E:       418078F111       CMP BYTE PTR [R8-15], 17
+; BF73:       740A             JEQ L50
+; BF75:       BA98000000       MOV EDX, 152
+; BF7A:       E924FDFFFF       JMP L2
+; BF7F: L50:  498BC0           MOV RAX, R8
+; BF82:       A801             TEST AL, 1
+; BF84:       7426             JEQ L52
+; BF86:       240F             AND AL, 15
+; BF88:       3C0F             CMP AL, 15
+; BF8A:       7525             JNE L53
+; BF8C:       498B40F1         MOV RAX, [R8-15]
+; BF90:       483D11010000     CMP RAX, 273
+; BF96:       7410             JEQ L51
+; BF98:       482D11020000     SUB RAX, 529
+; BF9E:       7511             JNE L53
+; BFA0:       49394001         CMP [R8+1], RAX
+; BFA4:       7435             JEQ L56
+; BFA6:       EB09             JMP L53
+; BFA8: L51:  498B40F9         MOV RAX, [R8-7]
+; BFAC: L52:  4885C0           TEST RAX, RAX
+; BFAF:       792A             JNS L56
+; BFB1: L53:  418D40F1         LEA EAX, [R8-15]
+; BFB5:       A801             TEST AL, 1
+; BFB7:       7518             JNE L55
+; BFB9:       A80F             TEST AL, 15
+; BFBB:       750A             JNE L54
+; BFBD:       498178F111010000 CMP QWORD PTR [R8-15], 273
+; BFC5:       740A             JEQ L55
+; BFC7: L54:  BA96000000       MOV EDX, 150
+; BFCC:       E9D2FCFFFF       JMP L2
+; BFD1: L55:  BA94000000       MOV EDX, 148
+; BFD6:       E9C8FCFFFF       JMP L2
+; BFDB: L56:  BA92000000       MOV EDX, 146
+; BFE0:       E9BEFCFFFF       JMP L2
+; BFE5: L57:  BA90000000       MOV EDX, 144
+; BFEA:       E9B4FCFFFF       JMP L2
+; BFEF: L58:  4883EC10         SUB RSP, 16
+; BFF3:       498BD0           MOV RDX, R8
+; BFF6:       31FF             XOR EDI, EDI
+; BFF8:       BE17001050       MOV ESI, #x50100017            ; NIL
+; BFFD:       B906000000       MOV ECX, 6
+; C002:       48892C24         MOV [RSP], RBP
+; C006:       488BEC           MOV RBP, RSP
+; C009:       B8F8E7AD52       MOV EAX, #x52ADE7F8            ; #<FDEFN SB-KERNEL:%WITH-ARRAY-DATA>
+; C00E:       FFD0             CALL RAX
+; C010:       488BE3           MOV RSP, RBX
+; C013:       4C8BC2           MOV R8, RDX
+; C016:       4C8BCD           MOV R9, RBP
+; C019:       488D4424F0       LEA RAX, [RSP-16]
+; C01E:       4883EC10         SUB RSP, 16
+; C022:       4C8908           MOV [RAX], R9
+; C025:       488BE8           MOV RBP, RAX
+; C028:       E868FBFFFF       CALL L0
+; C02D:       4883FA2E         CMP RDX, 46
+; C031:       7709             JNBE L59
+; C033:       4883C230         ADD RDX, 48
+; C037:       E967FCFFFF       JMP L2
+; C03C: L59:  48D1FA           SAR RDX, 1
+; C03F:       CC1B             BREAK 27                       ; OBJECT-NOT-TYPE-ERROR
+; C041:       0A               BYTE #X0A                      ; RDX
+; C042:       2F               BYTE #X2F                      ; '(MOD 24)
+; C043: L60:  4883EC10         SUB RSP, 16
+; C047:       498BD0           MOV RDX, R8
+; C04A:       31FF             XOR EDI, EDI
+; C04C:       BE17001050       MOV ESI, #x50100017            ; NIL
+; C051:       B906000000       MOV ECX, 6
+; C056:       48892C24         MOV [RSP], RBP
+; C05A:       488BEC           MOV RBP, RSP
+; C05D:       B8F8E7AD52       MOV EAX, #x52ADE7F8            ; #<FDEFN SB-KERNEL:%WITH-ARRAY-DATA>
+; C062:       FFD0             CALL RAX
+; C064:       488BE3           MOV RSP, RBX
+; C067:       4C8BC2           MOV R8, RDX
+; C06A:       4C8BCD           MOV R9, RBP
+; C06D:       488D4424F0       LEA RAX, [RSP-16]
+; C072:       4883EC10         SUB RSP, 16
+; C076:       4C8908           MOV [RAX], R9
+; C079:       488BE8           MOV RBP, RAX
+; C07C:       E814FBFFFF       CALL L0
+; C081:       4883FA2E         CMP RDX, 46
+; C085:       7709             JNBE L61
+; C087:       4883C230         ADD RDX, 48
+; C08B:       E913FCFFFF       JMP L2
+; C090: L61:  48D1FA           SAR RDX, 1
+; C093:       CC1B             BREAK 27                       ; OBJECT-NOT-TYPE-ERROR
+; C095:       0A               BYTE #X0A                      ; RDX
+; C096:       33               BYTE #X33                      ; '(MOD 24)
+; C097:       CC0F             BREAK 15                       ; Invalid argument count trap

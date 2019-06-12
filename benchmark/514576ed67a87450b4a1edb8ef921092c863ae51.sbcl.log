@@ -1,0 +1,1058 @@
+
+X86-64
+Intel(R) Core(TM) i5-6300U CPU @ 2.40GHz
+masataro-ThinkPad-T460
+Linux
+4.4.0-150-generic
+SBCL
+1.5.2
+Evaluation took:
+  0.869 seconds of real time
+  0.864000 seconds of total run time (0.864000 user, 0.000000 system)
+  99.42% CPU
+  2,169,835,496 processor cycles
+  0 bytes consed
+  
+Evaluation took:
+  0.710 seconds of real time
+  0.700000 seconds of total run time (0.700000 user, 0.000000 system)
+  98.59% CPU
+  1,771,888,782 processor cycles
+  0 bytes consed
+  
+Evaluation took:
+  0.737 seconds of real time
+  0.728000 seconds of total run time (0.728000 user, 0.000000 system)
+  98.78% CPU
+  1,838,766,900 processor cycles
+  0 bytes consed
+  
+Evaluation took:
+  0.719 seconds of real time
+  0.712000 seconds of total run time (0.712000 user, 0.000000 system)
+  99.03% CPU
+  1,796,209,708 processor cycles
+  0 bytes consed
+  
+Evaluation took:
+  0.710 seconds of real time
+  0.704000 seconds of total run time (0.704000 user, 0.000000 system)
+  99.15% CPU
+  1,771,499,218 processor cycles
+  0 bytes consed
+  
+; disassembly for SPECIALIZED-FUNCTION::WIDETAG
+; Size: 3919 bytes. Origin: #x52DA42D8
+; 42D8:       498B4510         MOV RAX, [R13+16]              ; no-arg-parsing entry point
+                                                              ; thread.binding-stack-pointer
+; 42DC:       488945F8         MOV [RBP-8], RAX
+; 42E0:       8D46F1           LEA EAX, [RSI-15]
+; 42E3:       A80F             TEST AL, 15
+; 42E5:       0F85D1010000     JNE L25
+; 42EB:       8B46F1           MOV EAX, [RSI-15]
+; 42EE:       2C85             SUB AL, -123
+; 42F0:       3C60             CMP AL, 96
+; 42F2:       0F87C4010000     JNBE L25
+; 42F8:       807EF1D5         CMP BYTE PTR [RSI-15], -43
+; 42FC:       0F84B3010000     JEQ L24
+; 4302:       807EF185         CMP BYTE PTR [RSI-15], -123
+; 4306:       0F849F010000     JEQ L23
+; 430C:       807EF189         CMP BYTE PTR [RSI-15], -119
+; 4310:       0F848B010000     JEQ L22
+; 4316:       807EF18D         CMP BYTE PTR [RSI-15], -115
+; 431A:       0F8477010000     JEQ L21
+; 4320:       807EF191         CMP BYTE PTR [RSI-15], -111
+; 4324:       0F8463010000     JEQ L20
+; 432A:       807EF195         CMP BYTE PTR [RSI-15], -107
+; 432E:       0F844F010000     JEQ L19
+; 4334:       807EF199         CMP BYTE PTR [RSI-15], -103
+; 4338:       0F843B010000     JEQ L18
+; 433E:       807EF19D         CMP BYTE PTR [RSI-15], -99
+; 4342:       0F8427010000     JEQ L17
+; 4348:       807EF1A1         CMP BYTE PTR [RSI-15], -95
+; 434C:       0F8413010000     JEQ L16
+; 4352:       807EF1A5         CMP BYTE PTR [RSI-15], -91
+; 4356:       0F84FF000000     JEQ L15
+; 435C:       807EF1A9         CMP BYTE PTR [RSI-15], -87
+; 4360:       0F84EB000000     JEQ L14
+; 4366:       807EF1B1         CMP BYTE PTR [RSI-15], -79
+; 436A:       0F84DA000000     JEQ L13
+; 4370:       807EF1B5         CMP BYTE PTR [RSI-15], -75
+; 4374:       0F84C9000000     JEQ L12
+; 437A:       807EF1B9         CMP BYTE PTR [RSI-15], -71
+; 437E:       0F84B8000000     JEQ L11
+; 4384:       807EF1BD         CMP BYTE PTR [RSI-15], -67
+; 4388:       0F84A7000000     JEQ L10
+; 438E:       807EF1AD         CMP BYTE PTR [RSI-15], -83
+; 4392:       0F8496000000     JEQ L9
+; 4398:       807EF1C1         CMP BYTE PTR [RSI-15], -63
+; 439C:       0F8485000000     JEQ L8
+; 43A2:       807EF1C5         CMP BYTE PTR [RSI-15], -59
+; 43A6:       7478             JEQ L7
+; 43A8:       807EF1C9         CMP BYTE PTR [RSI-15], -55
+; 43AC:       746B             JEQ L6
+; 43AE:       807EF1CD         CMP BYTE PTR [RSI-15], -51
+; 43B2:       745E             JEQ L5
+; 43B4:       807EF1D1         CMP BYTE PTR [RSI-15], -47
+; 43B8:       7451             JEQ L4
+; 43BA:       807EF1E1         CMP BYTE PTR [RSI-15], -31
+; 43BE:       7444             JEQ L3
+; 43C0:       807EF1E5         CMP BYTE PTR [RSI-15], -27
+; 43C4:       7437             JEQ L2
+; 43C6:       807EF1D9         CMP BYTE PTR [RSI-15], -39
+; 43CA:       750B             JNE L1
+; 43CC:       BA2E000000       MOV EDX, 46
+; 43D1: L0:   488BE5           MOV RSP, RBP
+; 43D4:       F8               CLC
+; 43D5:       5D               POP RBP
+; 43D6:       C3               RET
+; 43D7: L1:   4883EC10         SUB RSP, 16
+; 43DB:       488BD6           MOV RDX, RSI
+; 43DE:       488B3D6BFEFFFF   MOV RDI, [RIP-405]             ; '((SIMPLE-ARRAY
+                                                              ;    BIT 1) ..)
+; 43E5:       B904000000       MOV ECX, 4
+; 43EA:       48892C24         MOV [RSP], RBP
+; 43EE:       488BEC           MOV RBP, RSP
+; 43F1:       B818FFAD52       MOV EAX, #x52ADFF18            ; #<FDEFN SB-KERNEL:ETYPECASE-FAILURE>
+; 43F6:       FFD0             CALL RAX
+; 43F8:       90               NOP
+; 43F9:       488B75F0         MOV RSI, [RBP-16]
+; 43FD: L2:   BA2C000000       MOV EDX, 44
+; 4402:       EBCD             JMP L0
+; 4404: L3:   BA2A000000       MOV EDX, 42
+; 4409:       EBC6             JMP L0
+; 440B: L4:   BA28000000       MOV EDX, 40
+; 4410:       EBBF             JMP L0
+; 4412: L5:   BA26000000       MOV EDX, 38
+; 4417:       EBB8             JMP L0
+; 4419: L6:   BA24000000       MOV EDX, 36
+; 441E:       EBB1             JMP L0
+; 4420: L7:   BA22000000       MOV EDX, 34
+; 4425:       EBAA             JMP L0
+; 4427: L8:   BA20000000       MOV EDX, 32
+; 442C:       EBA3             JMP L0
+; 442E: L9:   BA1E000000       MOV EDX, 30
+; 4433:       EB9C             JMP L0
+; 4435: L10:  BA1C000000       MOV EDX, 28
+; 443A:       EB95             JMP L0
+; 443C: L11:  BA1A000000       MOV EDX, 26
+; 4441:       EB8E             JMP L0
+; 4443: L12:  BA18000000       MOV EDX, 24
+; 4448:       EB87             JMP L0
+; 444A: L13:  BA16000000       MOV EDX, 22
+; 444F:       EB80             JMP L0
+; 4451: L14:  BA14000000       MOV EDX, 20
+; 4456:       E976FFFFFF       JMP L0
+; 445B: L15:  BA12000000       MOV EDX, 18
+; 4460:       E96CFFFFFF       JMP L0
+; 4465: L16:  BA10000000       MOV EDX, 16
+; 446A:       E962FFFFFF       JMP L0
+; 446F: L17:  BA0E000000       MOV EDX, 14
+; 4474:       E958FFFFFF       JMP L0
+; 4479: L18:  BA0C000000       MOV EDX, 12
+; 447E:       E94EFFFFFF       JMP L0
+; 4483: L19:  BA0A000000       MOV EDX, 10
+; 4488:       E944FFFFFF       JMP L0
+; 448D: L20:  BA08000000       MOV EDX, #x8                   ; is_lisp_thread
+; 4492:       E93AFFFFFF       JMP L0
+; 4497: L21:  BA06000000       MOV EDX, 6
+; 449C:       E930FFFFFF       JMP L0
+; 44A1: L22:  BA04000000       MOV EDX, 4
+; 44A6:       E926FFFFFF       JMP L0
+; 44AB: L23:  BA02000000       MOV EDX, 2
+; 44B0:       E91CFFFFFF       JMP L0
+; 44B5: L24:  31D2             XOR EDX, EDX
+; 44B7:       E915FFFFFF       JMP L0
+; 44BC: L25:  8D46F1           LEA EAX, [RSI-15]
+; 44BF:       A80F             TEST AL, 15
+; 44C1:       0F859F050000     JNE L98
+; 44C7:       8B46F1           MOV EAX, [RSI-15]
+; 44CA:       2C81             SUB AL, -127
+; 44CC:       3C64             CMP AL, 100
+; 44CE:       0F8792050000     JNBE L98
+; 44D4:       4C8BC6           MOV R8, RSI
+; 44D7:       EB0B             JMP L27
+; 44D9:       0F1F8000000000   NOP
+; 44E0: L26:  4D8B4011         MOV R8, [R8+17]
+; 44E4: L27:  418B40F1         MOV EAX, [R8-15]
+; 44E8:       3C81             CMP AL, -127
+; 44EA:       74F4             JEQ L26
+; 44EC:       3CE9             CMP AL, -23
+; 44EE:       73F0             JNB L26
+; 44F0:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 44F5:       48D1E0           SHL RAX, 1
+; 44F8:       483DAA010000     CMP RAX, 426
+; 44FE:       0F8458050000     JEQ L97
+; 4504:       4C8BC6           MOV R8, RSI
+; 4507:       EB0B             JMP L29
+; 4509:       0F1F8000000000   NOP
+; 4510: L28:  4D8B4011         MOV R8, [R8+17]
+; 4514: L29:  418B40F1         MOV EAX, [R8-15]
+; 4518:       3C81             CMP AL, -127
+; 451A:       74F4             JEQ L28
+; 451C:       3CE9             CMP AL, -23
+; 451E:       73F0             JNB L28
+; 4520:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 4525:       48D1E0           SHL RAX, 1
+; 4528:       483D0A010000     CMP RAX, 266
+; 452E:       0F841E050000     JEQ L96
+; 4534:       4C8BC6           MOV R8, RSI
+; 4537:       EB0B             JMP L31
+; 4539:       0F1F8000000000   NOP
+; 4540: L30:  4D8B4011         MOV R8, [R8+17]
+; 4544: L31:  418B40F1         MOV EAX, [R8-15]
+; 4548:       3C81             CMP AL, -127
+; 454A:       74F4             JEQ L30
+; 454C:       3CE9             CMP AL, -23
+; 454E:       73F0             JNB L30
+; 4550:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 4555:       48D1E0           SHL RAX, 1
+; 4558:       483D12010000     CMP RAX, 274
+; 455E:       0F84E4040000     JEQ L95
+; 4564:       4C8BC6           MOV R8, RSI
+; 4567:       EB0B             JMP L33
+; 4569:       0F1F8000000000   NOP
+; 4570: L32:  4D8B4011         MOV R8, [R8+17]
+; 4574: L33:  418B40F1         MOV EAX, [R8-15]
+; 4578:       3C81             CMP AL, -127
+; 457A:       74F4             JEQ L32
+; 457C:       3CE9             CMP AL, -23
+; 457E:       73F0             JNB L32
+; 4580:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 4585:       48D1E0           SHL RAX, 1
+; 4588:       483D1A010000     CMP RAX, 282
+; 458E:       0F84AA040000     JEQ L94
+; 4594:       4C8BC6           MOV R8, RSI
+; 4597:       EB0B             JMP L35
+; 4599:       0F1F8000000000   NOP
+; 45A0: L34:  4D8B4011         MOV R8, [R8+17]
+; 45A4: L35:  418B40F1         MOV EAX, [R8-15]
+; 45A8:       3C81             CMP AL, -127
+; 45AA:       74F4             JEQ L34
+; 45AC:       3CE9             CMP AL, -23
+; 45AE:       73F0             JNB L34
+; 45B0:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 45B5:       48D1E0           SHL RAX, 1
+; 45B8:       483D22010000     CMP RAX, 290
+; 45BE:       0F8470040000     JEQ L93
+; 45C4:       4C8BC6           MOV R8, RSI
+; 45C7:       EB0B             JMP L37
+; 45C9:       0F1F8000000000   NOP
+; 45D0: L36:  4D8B4011         MOV R8, [R8+17]
+; 45D4: L37:  418B40F1         MOV EAX, [R8-15]
+; 45D8:       3C81             CMP AL, -127
+; 45DA:       74F4             JEQ L36
+; 45DC:       3CE9             CMP AL, -23
+; 45DE:       73F0             JNB L36
+; 45E0:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 45E5:       48D1E0           SHL RAX, 1
+; 45E8:       483D2A010000     CMP RAX, 298
+; 45EE:       0F8436040000     JEQ L92
+; 45F4:       4C8BC6           MOV R8, RSI
+; 45F7:       EB0B             JMP L39
+; 45F9:       0F1F8000000000   NOP
+; 4600: L38:  4D8B4011         MOV R8, [R8+17]
+; 4604: L39:  418B40F1         MOV EAX, [R8-15]
+; 4608:       3C81             CMP AL, -127
+; 460A:       74F4             JEQ L38
+; 460C:       3CE9             CMP AL, -23
+; 460E:       73F0             JNB L38
+; 4610:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 4615:       48D1E0           SHL RAX, 1
+; 4618:       483D32010000     CMP RAX, 306
+; 461E:       0F84FC030000     JEQ L91
+; 4624:       4C8BC6           MOV R8, RSI
+; 4627:       EB0B             JMP L41
+; 4629:       0F1F8000000000   NOP
+; 4630: L40:  4D8B4011         MOV R8, [R8+17]
+; 4634: L41:  418B40F1         MOV EAX, [R8-15]
+; 4638:       3C81             CMP AL, -127
+; 463A:       74F4             JEQ L40
+; 463C:       3CE9             CMP AL, -23
+; 463E:       73F0             JNB L40
+; 4640:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 4645:       48D1E0           SHL RAX, 1
+; 4648:       483D3A010000     CMP RAX, 314
+; 464E:       0F84C2030000     JEQ L90
+; 4654:       4C8BC6           MOV R8, RSI
+; 4657:       EB0B             JMP L43
+; 4659:       0F1F8000000000   NOP
+; 4660: L42:  4D8B4011         MOV R8, [R8+17]
+; 4664: L43:  418B40F1         MOV EAX, [R8-15]
+; 4668:       3C81             CMP AL, -127
+; 466A:       74F4             JEQ L42
+; 466C:       3CE9             CMP AL, -23
+; 466E:       73F0             JNB L42
+; 4670:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 4675:       48D1E0           SHL RAX, 1
+; 4678:       483D42010000     CMP RAX, 322
+; 467E:       0F8488030000     JEQ L89
+; 4684:       4C8BC6           MOV R8, RSI
+; 4687:       EB0B             JMP L45
+; 4689:       0F1F8000000000   NOP
+; 4690: L44:  4D8B4011         MOV R8, [R8+17]
+; 4694: L45:  418B40F1         MOV EAX, [R8-15]
+; 4698:       3C81             CMP AL, -127
+; 469A:       74F4             JEQ L44
+; 469C:       3CE9             CMP AL, -23
+; 469E:       73F0             JNB L44
+; 46A0:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 46A5:       48D1E0           SHL RAX, 1
+; 46A8:       483D4A010000     CMP RAX, 330
+; 46AE:       0F844E030000     JEQ L88
+; 46B4:       4C8BC6           MOV R8, RSI
+; 46B7:       EB0B             JMP L47
+; 46B9:       0F1F8000000000   NOP
+; 46C0: L46:  4D8B4011         MOV R8, [R8+17]
+; 46C4: L47:  418B40F1         MOV EAX, [R8-15]
+; 46C8:       3C81             CMP AL, -127
+; 46CA:       74F4             JEQ L46
+; 46CC:       3CE9             CMP AL, -23
+; 46CE:       73F0             JNB L46
+; 46D0:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 46D5:       48D1E0           SHL RAX, 1
+; 46D8:       483D52010000     CMP RAX, 338
+; 46DE:       0F8414030000     JEQ L87
+; 46E4:       4C8BC6           MOV R8, RSI
+; 46E7:       EB0B             JMP L49
+; 46E9:       0F1F8000000000   NOP
+; 46F0: L48:  4D8B4011         MOV R8, [R8+17]
+; 46F4: L49:  418B40F1         MOV EAX, [R8-15]
+; 46F8:       3C81             CMP AL, -127
+; 46FA:       74F4             JEQ L48
+; 46FC:       3CE9             CMP AL, -23
+; 46FE:       73F0             JNB L48
+; 4700:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 4705:       48D1E0           SHL RAX, 1
+; 4708:       483D62010000     CMP RAX, 354
+; 470E:       0F84DA020000     JEQ L86
+; 4714:       4C8BC6           MOV R8, RSI
+; 4717:       EB0B             JMP L51
+; 4719:       0F1F8000000000   NOP
+; 4720: L50:  4D8B4011         MOV R8, [R8+17]
+; 4724: L51:  418B40F1         MOV EAX, [R8-15]
+; 4728:       3C81             CMP AL, -127
+; 472A:       74F4             JEQ L50
+; 472C:       3CE9             CMP AL, -23
+; 472E:       73F0             JNB L50
+; 4730:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 4735:       48D1E0           SHL RAX, 1
+; 4738:       483D6A010000     CMP RAX, 362
+; 473E:       0F84A0020000     JEQ L85
+; 4744:       4C8BC6           MOV R8, RSI
+; 4747:       EB0B             JMP L53
+; 4749:       0F1F8000000000   NOP
+; 4750: L52:  4D8B4011         MOV R8, [R8+17]
+; 4754: L53:  418B40F1         MOV EAX, [R8-15]
+; 4758:       3C81             CMP AL, -127
+; 475A:       74F4             JEQ L52
+; 475C:       3CE9             CMP AL, -23
+; 475E:       73F0             JNB L52
+; 4760:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 4765:       48D1E0           SHL RAX, 1
+; 4768:       483D72010000     CMP RAX, 370
+; 476E:       0F8466020000     JEQ L84
+; 4774:       4C8BC6           MOV R8, RSI
+; 4777:       EB0B             JMP L55
+; 4779:       0F1F8000000000   NOP
+; 4780: L54:  4D8B4011         MOV R8, [R8+17]
+; 4784: L55:  418B40F1         MOV EAX, [R8-15]
+; 4788:       3C81             CMP AL, -127
+; 478A:       74F4             JEQ L54
+; 478C:       3CE9             CMP AL, -23
+; 478E:       73F0             JNB L54
+; 4790:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 4795:       48D1E0           SHL RAX, 1
+; 4798:       483D7A010000     CMP RAX, 378
+; 479E:       0F842C020000     JEQ L83
+; 47A4:       4C8BC6           MOV R8, RSI
+; 47A7:       EB0B             JMP L57
+; 47A9:       0F1F8000000000   NOP
+; 47B0: L56:  4D8B4011         MOV R8, [R8+17]
+; 47B4: L57:  418B40F1         MOV EAX, [R8-15]
+; 47B8:       3C81             CMP AL, -127
+; 47BA:       74F4             JEQ L56
+; 47BC:       3CE9             CMP AL, -23
+; 47BE:       73F0             JNB L56
+; 47C0:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 47C5:       48D1E0           SHL RAX, 1
+; 47C8:       483D5A010000     CMP RAX, 346
+; 47CE:       0F84F2010000     JEQ L82
+; 47D4:       4C8BC6           MOV R8, RSI
+; 47D7:       EB0B             JMP L59
+; 47D9:       0F1F8000000000   NOP
+; 47E0: L58:  4D8B4011         MOV R8, [R8+17]
+; 47E4: L59:  418B40F1         MOV EAX, [R8-15]
+; 47E8:       3C81             CMP AL, -127
+; 47EA:       74F4             JEQ L58
+; 47EC:       3CE9             CMP AL, -23
+; 47EE:       73F0             JNB L58
+; 47F0:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 47F5:       48D1E0           SHL RAX, 1
+; 47F8:       483D82010000     CMP RAX, 386
+; 47FE:       0F84B8010000     JEQ L81
+; 4804:       4C8BC6           MOV R8, RSI
+; 4807:       EB0B             JMP L61
+; 4809:       0F1F8000000000   NOP
+; 4810: L60:  4D8B4011         MOV R8, [R8+17]
+; 4814: L61:  418B40F1         MOV EAX, [R8-15]
+; 4818:       3C81             CMP AL, -127
+; 481A:       74F4             JEQ L60
+; 481C:       3CE9             CMP AL, -23
+; 481E:       73F0             JNB L60
+; 4820:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 4825:       48D1E0           SHL RAX, 1
+; 4828:       483D8A010000     CMP RAX, 394
+; 482E:       0F847E010000     JEQ L80
+; 4834:       4C8BC6           MOV R8, RSI
+; 4837:       EB0B             JMP L63
+; 4839:       0F1F8000000000   NOP
+; 4840: L62:  4D8B4011         MOV R8, [R8+17]
+; 4844: L63:  418B40F1         MOV EAX, [R8-15]
+; 4848:       3C81             CMP AL, -127
+; 484A:       74F4             JEQ L62
+; 484C:       3CE9             CMP AL, -23
+; 484E:       73F0             JNB L62
+; 4850:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 4855:       48D1E0           SHL RAX, 1
+; 4858:       483D92010000     CMP RAX, 402
+; 485E:       0F8444010000     JEQ L79
+; 4864:       4C8BC6           MOV R8, RSI
+; 4867:       EB0B             JMP L65
+; 4869:       0F1F8000000000   NOP
+; 4870: L64:  4D8B4011         MOV R8, [R8+17]
+; 4874: L65:  418B40F1         MOV EAX, [R8-15]
+; 4878:       3C81             CMP AL, -127
+; 487A:       74F4             JEQ L64
+; 487C:       3CE9             CMP AL, -23
+; 487E:       73F0             JNB L64
+; 4880:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 4885:       48D1E0           SHL RAX, 1
+; 4888:       483D9A010000     CMP RAX, 410
+; 488E:       0F840A010000     JEQ L78
+; 4894:       4C8BC6           MOV R8, RSI
+; 4897:       EB0B             JMP L67
+; 4899:       0F1F8000000000   NOP
+; 48A0: L66:  4D8B4011         MOV R8, [R8+17]
+; 48A4: L67:  418B40F1         MOV EAX, [R8-15]
+; 48A8:       3C81             CMP AL, -127
+; 48AA:       74F4             JEQ L66
+; 48AC:       3CE9             CMP AL, -23
+; 48AE:       73F0             JNB L66
+; 48B0:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 48B5:       48D1E0           SHL RAX, 1
+; 48B8:       483DA2010000     CMP RAX, 418
+; 48BE:       0F84D0000000     JEQ L77
+; 48C4:       4C8BC6           MOV R8, RSI
+; 48C7:       EB0B             JMP L69
+; 48C9:       0F1F8000000000   NOP
+; 48D0: L68:  4D8B4011         MOV R8, [R8+17]
+; 48D4: L69:  418B40F1         MOV EAX, [R8-15]
+; 48D8:       3C81             CMP AL, -127
+; 48DA:       74F4             JEQ L68
+; 48DC:       3CE9             CMP AL, -23
+; 48DE:       73F0             JNB L68
+; 48E0:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 48E5:       48D1E0           SHL RAX, 1
+; 48E8:       483DC2010000     CMP RAX, 450
+; 48EE:       0F8496000000     JEQ L76
+; 48F4:       4C8BC6           MOV R8, RSI
+; 48F7:       EB0B             JMP L71
+; 48F9:       0F1F8000000000   NOP
+; 4900: L70:  4D8B4011         MOV R8, [R8+17]
+; 4904: L71:  418B40F1         MOV EAX, [R8-15]
+; 4908:       3C81             CMP AL, -127
+; 490A:       74F4             JEQ L70
+; 490C:       3CE9             CMP AL, -23
+; 490E:       73F0             JNB L70
+; 4910:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 4915:       48D1E0           SHL RAX, 1
+; 4918:       483DCA010000     CMP RAX, 458
+; 491E:       7460             JEQ L75
+; 4920:       4C8BC6           MOV R8, RSI
+; 4923:       EB0F             JMP L73
+; 4925:       660F1F840000000000 NOP
+; 492E:       6690             NOP
+; 4930: L72:  4D8B4011         MOV R8, [R8+17]
+; 4934: L73:  418B40F1         MOV EAX, [R8-15]
+; 4938:       3C81             CMP AL, -127
+; 493A:       74F4             JEQ L72
+; 493C:       3CE9             CMP AL, -23
+; 493E:       73F0             JNB L72
+; 4940:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 4945:       48D1E0           SHL RAX, 1
+; 4948:       483DB2010000     CMP RAX, 434
+; 494E:       750A             JNE L74
+; 4950:       BA5E000000       MOV EDX, 94
+; 4955:       E977FAFFFF       JMP L0
+; 495A: L74:  4883EC10         SUB RSP, 16
+; 495E:       488BD6           MOV RDX, RSI
+; 4961:       488B3DF8F8FFFF   MOV RDI, [RIP-1800]            ; '((SIMPLE-ARRAY
+                                                              ;    BIT) ..)
+; 4968:       B904000000       MOV ECX, 4
+; 496D:       48892C24         MOV [RSP], RBP
+; 4971:       488BEC           MOV RBP, RSP
+; 4974:       B818FFAD52       MOV EAX, #x52ADFF18            ; #<FDEFN SB-KERNEL:ETYPECASE-FAILURE>
+; 4979:       FFD0             CALL RAX
+; 497B:       90               NOP
+; 497C:       488B75F0         MOV RSI, [RBP-16]
+; 4980: L75:  BA5C000000       MOV EDX, 92
+; 4985:       E947FAFFFF       JMP L0
+; 498A: L76:  BA5A000000       MOV EDX, 90
+; 498F:       E93DFAFFFF       JMP L0
+; 4994: L77:  BA58000000       MOV EDX, 88
+; 4999:       E933FAFFFF       JMP L0
+; 499E: L78:  BA56000000       MOV EDX, 86
+; 49A3:       E929FAFFFF       JMP L0
+; 49A8: L79:  BA54000000       MOV EDX, 84
+; 49AD:       E91FFAFFFF       JMP L0
+; 49B2: L80:  BA52000000       MOV EDX, 82
+; 49B7:       E915FAFFFF       JMP L0
+; 49BC: L81:  BA50000000       MOV EDX, 80
+; 49C1:       E90BFAFFFF       JMP L0
+; 49C6: L82:  BA4E000000       MOV EDX, 78
+; 49CB:       E901FAFFFF       JMP L0
+; 49D0: L83:  BA4C000000       MOV EDX, 76
+; 49D5:       E9F7F9FFFF       JMP L0
+; 49DA: L84:  BA4A000000       MOV EDX, 74
+; 49DF:       E9EDF9FFFF       JMP L0
+; 49E4: L85:  BA48000000       MOV EDX, 72
+; 49E9:       E9E3F9FFFF       JMP L0
+; 49EE: L86:  BA46000000       MOV EDX, 70
+; 49F3:       E9D9F9FFFF       JMP L0
+; 49F8: L87:  BA44000000       MOV EDX, 68
+; 49FD:       E9CFF9FFFF       JMP L0
+; 4A02: L88:  BA42000000       MOV EDX, 66
+; 4A07:       E9C5F9FFFF       JMP L0
+; 4A0C: L89:  BA40000000       MOV EDX, 64
+; 4A11:       E9BBF9FFFF       JMP L0
+; 4A16: L90:  BA3E000000       MOV EDX, 62
+; 4A1B:       E9B1F9FFFF       JMP L0
+; 4A20: L91:  BA3C000000       MOV EDX, 60
+; 4A25:       E9A7F9FFFF       JMP L0
+; 4A2A: L92:  BA3A000000       MOV EDX, 58
+; 4A2F:       E99DF9FFFF       JMP L0
+; 4A34: L93:  BA38000000       MOV EDX, 56
+; 4A39:       E993F9FFFF       JMP L0
+; 4A3E: L94:  BA36000000       MOV EDX, 54
+; 4A43:       E989F9FFFF       JMP L0
+; 4A48: L95:  BA34000000       MOV EDX, 52
+; 4A4D:       E97FF9FFFF       JMP L0
+; 4A52: L96:  BA32000000       MOV EDX, 50
+; 4A57:       E975F9FFFF       JMP L0
+; 4A5C: L97:  BA30000000       MOV EDX, 48
+; 4A61:       E96BF9FFFF       JMP L0
+; 4A66: L98:  8D46F1           LEA EAX, [RSI-15]
+; 4A69:       A80F             TEST AL, 15
+; 4A6B:       0F8595050000     JNE L171
+; 4A71:       807EF181         CMP BYTE PTR [RSI-15], -127
+; 4A75:       0F828B050000     JB L171
+; 4A7B:       4C8BC6           MOV R8, RSI
+; 4A7E:       EB04             JMP L100
+; 4A80: L99:  4D8B4011         MOV R8, [R8+17]
+; 4A84: L100: 418B40F1         MOV EAX, [R8-15]
+; 4A88:       3C81             CMP AL, -127
+; 4A8A:       74F4             JEQ L99
+; 4A8C:       3CE9             CMP AL, -23
+; 4A8E:       73F0             JNB L99
+; 4A90:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 4A95:       48D1E0           SHL RAX, 1
+; 4A98:       483DAA010000     CMP RAX, 426
+; 4A9E:       0F8458050000     JEQ L170
+; 4AA4:       4C8BC6           MOV R8, RSI
+; 4AA7:       EB0B             JMP L102
+; 4AA9:       0F1F8000000000   NOP
+; 4AB0: L101: 4D8B4011         MOV R8, [R8+17]
+; 4AB4: L102: 418B40F1         MOV EAX, [R8-15]
+; 4AB8:       3C81             CMP AL, -127
+; 4ABA:       74F4             JEQ L101
+; 4ABC:       3CE9             CMP AL, -23
+; 4ABE:       73F0             JNB L101
+; 4AC0:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 4AC5:       48D1E0           SHL RAX, 1
+; 4AC8:       483D0A010000     CMP RAX, 266
+; 4ACE:       0F841E050000     JEQ L169
+; 4AD4:       4C8BC6           MOV R8, RSI
+; 4AD7:       EB0B             JMP L104
+; 4AD9:       0F1F8000000000   NOP
+; 4AE0: L103: 4D8B4011         MOV R8, [R8+17]
+; 4AE4: L104: 418B40F1         MOV EAX, [R8-15]
+; 4AE8:       3C81             CMP AL, -127
+; 4AEA:       74F4             JEQ L103
+; 4AEC:       3CE9             CMP AL, -23
+; 4AEE:       73F0             JNB L103
+; 4AF0:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 4AF5:       48D1E0           SHL RAX, 1
+; 4AF8:       483D12010000     CMP RAX, 274
+; 4AFE:       0F84E4040000     JEQ L168
+; 4B04:       4C8BC6           MOV R8, RSI
+; 4B07:       EB0B             JMP L106
+; 4B09:       0F1F8000000000   NOP
+; 4B10: L105: 4D8B4011         MOV R8, [R8+17]
+; 4B14: L106: 418B40F1         MOV EAX, [R8-15]
+; 4B18:       3C81             CMP AL, -127
+; 4B1A:       74F4             JEQ L105
+; 4B1C:       3CE9             CMP AL, -23
+; 4B1E:       73F0             JNB L105
+; 4B20:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 4B25:       48D1E0           SHL RAX, 1
+; 4B28:       483D1A010000     CMP RAX, 282
+; 4B2E:       0F84AA040000     JEQ L167
+; 4B34:       4C8BC6           MOV R8, RSI
+; 4B37:       EB0B             JMP L108
+; 4B39:       0F1F8000000000   NOP
+; 4B40: L107: 4D8B4011         MOV R8, [R8+17]
+; 4B44: L108: 418B40F1         MOV EAX, [R8-15]
+; 4B48:       3C81             CMP AL, -127
+; 4B4A:       74F4             JEQ L107
+; 4B4C:       3CE9             CMP AL, -23
+; 4B4E:       73F0             JNB L107
+; 4B50:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 4B55:       48D1E0           SHL RAX, 1
+; 4B58:       483D22010000     CMP RAX, 290
+; 4B5E:       0F8470040000     JEQ L166
+; 4B64:       4C8BC6           MOV R8, RSI
+; 4B67:       EB0B             JMP L110
+; 4B69:       0F1F8000000000   NOP
+; 4B70: L109: 4D8B4011         MOV R8, [R8+17]
+; 4B74: L110: 418B40F1         MOV EAX, [R8-15]
+; 4B78:       3C81             CMP AL, -127
+; 4B7A:       74F4             JEQ L109
+; 4B7C:       3CE9             CMP AL, -23
+; 4B7E:       73F0             JNB L109
+; 4B80:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 4B85:       48D1E0           SHL RAX, 1
+; 4B88:       483D2A010000     CMP RAX, 298
+; 4B8E:       0F8436040000     JEQ L165
+; 4B94:       4C8BC6           MOV R8, RSI
+; 4B97:       EB0B             JMP L112
+; 4B99:       0F1F8000000000   NOP
+; 4BA0: L111: 4D8B4011         MOV R8, [R8+17]
+; 4BA4: L112: 418B40F1         MOV EAX, [R8-15]
+; 4BA8:       3C81             CMP AL, -127
+; 4BAA:       74F4             JEQ L111
+; 4BAC:       3CE9             CMP AL, -23
+; 4BAE:       73F0             JNB L111
+; 4BB0:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 4BB5:       48D1E0           SHL RAX, 1
+; 4BB8:       483D32010000     CMP RAX, 306
+; 4BBE:       0F84FC030000     JEQ L164
+; 4BC4:       4C8BC6           MOV R8, RSI
+; 4BC7:       EB0B             JMP L114
+; 4BC9:       0F1F8000000000   NOP
+; 4BD0: L113: 4D8B4011         MOV R8, [R8+17]
+; 4BD4: L114: 418B40F1         MOV EAX, [R8-15]
+; 4BD8:       3C81             CMP AL, -127
+; 4BDA:       74F4             JEQ L113
+; 4BDC:       3CE9             CMP AL, -23
+; 4BDE:       73F0             JNB L113
+; 4BE0:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 4BE5:       48D1E0           SHL RAX, 1
+; 4BE8:       483D3A010000     CMP RAX, 314
+; 4BEE:       0F84C2030000     JEQ L163
+; 4BF4:       4C8BC6           MOV R8, RSI
+; 4BF7:       EB0B             JMP L116
+; 4BF9:       0F1F8000000000   NOP
+; 4C00: L115: 4D8B4011         MOV R8, [R8+17]
+; 4C04: L116: 418B40F1         MOV EAX, [R8-15]
+; 4C08:       3C81             CMP AL, -127
+; 4C0A:       74F4             JEQ L115
+; 4C0C:       3CE9             CMP AL, -23
+; 4C0E:       73F0             JNB L115
+; 4C10:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 4C15:       48D1E0           SHL RAX, 1
+; 4C18:       483D42010000     CMP RAX, 322
+; 4C1E:       0F8488030000     JEQ L162
+; 4C24:       4C8BC6           MOV R8, RSI
+; 4C27:       EB0B             JMP L118
+; 4C29:       0F1F8000000000   NOP
+; 4C30: L117: 4D8B4011         MOV R8, [R8+17]
+; 4C34: L118: 418B40F1         MOV EAX, [R8-15]
+; 4C38:       3C81             CMP AL, -127
+; 4C3A:       74F4             JEQ L117
+; 4C3C:       3CE9             CMP AL, -23
+; 4C3E:       73F0             JNB L117
+; 4C40:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 4C45:       48D1E0           SHL RAX, 1
+; 4C48:       483D4A010000     CMP RAX, 330
+; 4C4E:       0F844E030000     JEQ L161
+; 4C54:       4C8BC6           MOV R8, RSI
+; 4C57:       EB0B             JMP L120
+; 4C59:       0F1F8000000000   NOP
+; 4C60: L119: 4D8B4011         MOV R8, [R8+17]
+; 4C64: L120: 418B40F1         MOV EAX, [R8-15]
+; 4C68:       3C81             CMP AL, -127
+; 4C6A:       74F4             JEQ L119
+; 4C6C:       3CE9             CMP AL, -23
+; 4C6E:       73F0             JNB L119
+; 4C70:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 4C75:       48D1E0           SHL RAX, 1
+; 4C78:       483D52010000     CMP RAX, 338
+; 4C7E:       0F8414030000     JEQ L160
+; 4C84:       4C8BC6           MOV R8, RSI
+; 4C87:       EB0B             JMP L122
+; 4C89:       0F1F8000000000   NOP
+; 4C90: L121: 4D8B4011         MOV R8, [R8+17]
+; 4C94: L122: 418B40F1         MOV EAX, [R8-15]
+; 4C98:       3C81             CMP AL, -127
+; 4C9A:       74F4             JEQ L121
+; 4C9C:       3CE9             CMP AL, -23
+; 4C9E:       73F0             JNB L121
+; 4CA0:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 4CA5:       48D1E0           SHL RAX, 1
+; 4CA8:       483D62010000     CMP RAX, 354
+; 4CAE:       0F84DA020000     JEQ L159
+; 4CB4:       4C8BC6           MOV R8, RSI
+; 4CB7:       EB0B             JMP L124
+; 4CB9:       0F1F8000000000   NOP
+; 4CC0: L123: 4D8B4011         MOV R8, [R8+17]
+; 4CC4: L124: 418B40F1         MOV EAX, [R8-15]
+; 4CC8:       3C81             CMP AL, -127
+; 4CCA:       74F4             JEQ L123
+; 4CCC:       3CE9             CMP AL, -23
+; 4CCE:       73F0             JNB L123
+; 4CD0:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 4CD5:       48D1E0           SHL RAX, 1
+; 4CD8:       483D6A010000     CMP RAX, 362
+; 4CDE:       0F84A0020000     JEQ L158
+; 4CE4:       4C8BC6           MOV R8, RSI
+; 4CE7:       EB0B             JMP L126
+; 4CE9:       0F1F8000000000   NOP
+; 4CF0: L125: 4D8B4011         MOV R8, [R8+17]
+; 4CF4: L126: 418B40F1         MOV EAX, [R8-15]
+; 4CF8:       3C81             CMP AL, -127
+; 4CFA:       74F4             JEQ L125
+; 4CFC:       3CE9             CMP AL, -23
+; 4CFE:       73F0             JNB L125
+; 4D00:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 4D05:       48D1E0           SHL RAX, 1
+; 4D08:       483D72010000     CMP RAX, 370
+; 4D0E:       0F8466020000     JEQ L157
+; 4D14:       4C8BC6           MOV R8, RSI
+; 4D17:       EB0B             JMP L128
+; 4D19:       0F1F8000000000   NOP
+; 4D20: L127: 4D8B4011         MOV R8, [R8+17]
+; 4D24: L128: 418B40F1         MOV EAX, [R8-15]
+; 4D28:       3C81             CMP AL, -127
+; 4D2A:       74F4             JEQ L127
+; 4D2C:       3CE9             CMP AL, -23
+; 4D2E:       73F0             JNB L127
+; 4D30:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 4D35:       48D1E0           SHL RAX, 1
+; 4D38:       483D7A010000     CMP RAX, 378
+; 4D3E:       0F842C020000     JEQ L156
+; 4D44:       4C8BC6           MOV R8, RSI
+; 4D47:       EB0B             JMP L130
+; 4D49:       0F1F8000000000   NOP
+; 4D50: L129: 4D8B4011         MOV R8, [R8+17]
+; 4D54: L130: 418B40F1         MOV EAX, [R8-15]
+; 4D58:       3C81             CMP AL, -127
+; 4D5A:       74F4             JEQ L129
+; 4D5C:       3CE9             CMP AL, -23
+; 4D5E:       73F0             JNB L129
+; 4D60:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 4D65:       48D1E0           SHL RAX, 1
+; 4D68:       483D5A010000     CMP RAX, 346
+; 4D6E:       0F84F2010000     JEQ L155
+; 4D74:       4C8BC6           MOV R8, RSI
+; 4D77:       EB0B             JMP L132
+; 4D79:       0F1F8000000000   NOP
+; 4D80: L131: 4D8B4011         MOV R8, [R8+17]
+; 4D84: L132: 418B40F1         MOV EAX, [R8-15]
+; 4D88:       3C81             CMP AL, -127
+; 4D8A:       74F4             JEQ L131
+; 4D8C:       3CE9             CMP AL, -23
+; 4D8E:       73F0             JNB L131
+; 4D90:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 4D95:       48D1E0           SHL RAX, 1
+; 4D98:       483D82010000     CMP RAX, 386
+; 4D9E:       0F84B8010000     JEQ L154
+; 4DA4:       4C8BC6           MOV R8, RSI
+; 4DA7:       EB0B             JMP L134
+; 4DA9:       0F1F8000000000   NOP
+; 4DB0: L133: 4D8B4011         MOV R8, [R8+17]
+; 4DB4: L134: 418B40F1         MOV EAX, [R8-15]
+; 4DB8:       3C81             CMP AL, -127
+; 4DBA:       74F4             JEQ L133
+; 4DBC:       3CE9             CMP AL, -23
+; 4DBE:       73F0             JNB L133
+; 4DC0:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 4DC5:       48D1E0           SHL RAX, 1
+; 4DC8:       483D8A010000     CMP RAX, 394
+; 4DCE:       0F847E010000     JEQ L153
+; 4DD4:       4C8BC6           MOV R8, RSI
+; 4DD7:       EB0B             JMP L136
+; 4DD9:       0F1F8000000000   NOP
+; 4DE0: L135: 4D8B4011         MOV R8, [R8+17]
+; 4DE4: L136: 418B40F1         MOV EAX, [R8-15]
+; 4DE8:       3C81             CMP AL, -127
+; 4DEA:       74F4             JEQ L135
+; 4DEC:       3CE9             CMP AL, -23
+; 4DEE:       73F0             JNB L135
+; 4DF0:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 4DF5:       48D1E0           SHL RAX, 1
+; 4DF8:       483D92010000     CMP RAX, 402
+; 4DFE:       0F8444010000     JEQ L152
+; 4E04:       4C8BC6           MOV R8, RSI
+; 4E07:       EB0B             JMP L138
+; 4E09:       0F1F8000000000   NOP
+; 4E10: L137: 4D8B4011         MOV R8, [R8+17]
+; 4E14: L138: 418B40F1         MOV EAX, [R8-15]
+; 4E18:       3C81             CMP AL, -127
+; 4E1A:       74F4             JEQ L137
+; 4E1C:       3CE9             CMP AL, -23
+; 4E1E:       73F0             JNB L137
+; 4E20:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 4E25:       48D1E0           SHL RAX, 1
+; 4E28:       483D9A010000     CMP RAX, 410
+; 4E2E:       0F840A010000     JEQ L151
+; 4E34:       4C8BC6           MOV R8, RSI
+; 4E37:       EB0B             JMP L140
+; 4E39:       0F1F8000000000   NOP
+; 4E40: L139: 4D8B4011         MOV R8, [R8+17]
+; 4E44: L140: 418B40F1         MOV EAX, [R8-15]
+; 4E48:       3C81             CMP AL, -127
+; 4E4A:       74F4             JEQ L139
+; 4E4C:       3CE9             CMP AL, -23
+; 4E4E:       73F0             JNB L139
+; 4E50:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 4E55:       48D1E0           SHL RAX, 1
+; 4E58:       483DA2010000     CMP RAX, 418
+; 4E5E:       0F84D0000000     JEQ L150
+; 4E64:       4C8BC6           MOV R8, RSI
+; 4E67:       EB0B             JMP L142
+; 4E69:       0F1F8000000000   NOP
+; 4E70: L141: 4D8B4011         MOV R8, [R8+17]
+; 4E74: L142: 418B40F1         MOV EAX, [R8-15]
+; 4E78:       3C81             CMP AL, -127
+; 4E7A:       74F4             JEQ L141
+; 4E7C:       3CE9             CMP AL, -23
+; 4E7E:       73F0             JNB L141
+; 4E80:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 4E85:       48D1E0           SHL RAX, 1
+; 4E88:       483DC2010000     CMP RAX, 450
+; 4E8E:       0F8496000000     JEQ L149
+; 4E94:       4C8BC6           MOV R8, RSI
+; 4E97:       EB0B             JMP L144
+; 4E99:       0F1F8000000000   NOP
+; 4EA0: L143: 4D8B4011         MOV R8, [R8+17]
+; 4EA4: L144: 418B40F1         MOV EAX, [R8-15]
+; 4EA8:       3C81             CMP AL, -127
+; 4EAA:       74F4             JEQ L143
+; 4EAC:       3CE9             CMP AL, -23
+; 4EAE:       73F0             JNB L143
+; 4EB0:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 4EB5:       48D1E0           SHL RAX, 1
+; 4EB8:       483DCA010000     CMP RAX, 458
+; 4EBE:       7460             JEQ L148
+; 4EC0:       4C8BC6           MOV R8, RSI
+; 4EC3:       EB0F             JMP L146
+; 4EC5:       660F1F840000000000 NOP
+; 4ECE:       6690             NOP
+; 4ED0: L145: 4D8B4011         MOV R8, [R8+17]
+; 4ED4: L146: 418B40F1         MOV EAX, [R8-15]
+; 4ED8:       3C81             CMP AL, -127
+; 4EDA:       74F4             JEQ L145
+; 4EDC:       3CE9             CMP AL, -23
+; 4EDE:       73F0             JNB L145
+; 4EE0:       410FB640F1       MOVZX EAX, BYTE PTR [R8-15]
+; 4EE5:       48D1E0           SHL RAX, 1
+; 4EE8:       483DB2010000     CMP RAX, 434
+; 4EEE:       750A             JNE L147
+; 4EF0:       BA8E000000       MOV EDX, 142
+; 4EF5:       E9D7F4FFFF       JMP L0
+; 4EFA: L147: 4883EC10         SUB RSP, 16
+; 4EFE:       488BD6           MOV RDX, RSI
+; 4F01:       488B3D60F3FFFF   MOV RDI, [RIP-3232]            ; '((ARRAY BIT)
+                                                              ;   (ARRAY #) ..)
+; 4F08:       B904000000       MOV ECX, 4
+; 4F0D:       48892C24         MOV [RSP], RBP
+; 4F11:       488BEC           MOV RBP, RSP
+; 4F14:       B818FFAD52       MOV EAX, #x52ADFF18            ; #<FDEFN SB-KERNEL:ETYPECASE-FAILURE>
+; 4F19:       FFD0             CALL RAX
+; 4F1B:       90               NOP
+; 4F1C:       488B75F0         MOV RSI, [RBP-16]
+; 4F20: L148: BA8C000000       MOV EDX, 140
+; 4F25:       E9A7F4FFFF       JMP L0
+; 4F2A: L149: BA8A000000       MOV EDX, 138
+; 4F2F:       E99DF4FFFF       JMP L0
+; 4F34: L150: BA88000000       MOV EDX, 136
+; 4F39:       E993F4FFFF       JMP L0
+; 4F3E: L151: BA86000000       MOV EDX, 134
+; 4F43:       E989F4FFFF       JMP L0
+; 4F48: L152: BA84000000       MOV EDX, 132
+; 4F4D:       E97FF4FFFF       JMP L0
+; 4F52: L153: BA82000000       MOV EDX, 130
+; 4F57:       E975F4FFFF       JMP L0
+; 4F5C: L154: BA80000000       MOV EDX, 128
+; 4F61:       E96BF4FFFF       JMP L0
+; 4F66: L155: BA7E000000       MOV EDX, 126
+; 4F6B:       E961F4FFFF       JMP L0
+; 4F70: L156: BA7C000000       MOV EDX, 124
+; 4F75:       E957F4FFFF       JMP L0
+; 4F7A: L157: BA7A000000       MOV EDX, 122
+; 4F7F:       E94DF4FFFF       JMP L0
+; 4F84: L158: BA78000000       MOV EDX, 120
+; 4F89:       E943F4FFFF       JMP L0
+; 4F8E: L159: BA76000000       MOV EDX, 118
+; 4F93:       E939F4FFFF       JMP L0
+; 4F98: L160: BA74000000       MOV EDX, 116
+; 4F9D:       E92FF4FFFF       JMP L0
+; 4FA2: L161: BA72000000       MOV EDX, 114
+; 4FA7:       E925F4FFFF       JMP L0
+; 4FAC: L162: BA70000000       MOV EDX, 112
+; 4FB1:       E91BF4FFFF       JMP L0
+; 4FB6: L163: BA6E000000       MOV EDX, 110
+; 4FBB:       E911F4FFFF       JMP L0
+; 4FC0: L164: BA6C000000       MOV EDX, 108
+; 4FC5:       E907F4FFFF       JMP L0
+; 4FCA: L165: BA6A000000       MOV EDX, 106
+; 4FCF:       E9FDF3FFFF       JMP L0
+; 4FD4: L166: BA68000000       MOV EDX, 104
+; 4FD9:       E9F3F3FFFF       JMP L0
+; 4FDE: L167: BA66000000       MOV EDX, 102
+; 4FE3:       E9E9F3FFFF       JMP L0
+; 4FE8: L168: BA64000000       MOV EDX, 100
+; 4FED:       E9DFF3FFFF       JMP L0
+; 4FF2: L169: BA62000000       MOV EDX, 98
+; 4FF7:       E9D5F3FFFF       JMP L0
+; 4FFC: L170: BA60000000       MOV EDX, 96
+; 5001:       E9CBF3FFFF       JMP L0
+; 5006: L171: 40F6C601         TEST SIL, 1
+; 500A:       0F840B020000     JEQ L201
+; 5010:       488BC6           MOV RAX, RSI
+; 5013:       A801             TEST AL, 1
+; 5015:       742A             JEQ L173
+; 5017:       240F             AND AL, 15
+; 5019:       3C0F             CMP AL, 15
+; 501B:       752D             JNE L174
+; 501D:       488B46F1         MOV RAX, [RSI-15]
+; 5021:       483D11010000     CMP RAX, 273
+; 5027:       7414             JEQ L172
+; 5029:       482D11020000     SUB RAX, 529
+; 502F:       7519             JNE L174
+; 5031:       48394601         CMP [RSI+1], RAX
+; 5035:       0F84D6010000     JEQ L200
+; 503B:       EB0D             JMP L174
+; 503D: L172: 488B46F9         MOV RAX, [RSI-7]
+; 5041: L173: 4885C0           TEST RAX, RAX
+; 5044:       0F89C7010000     JNS L200
+; 504A: L174: 8D46F1           LEA EAX, [RSI-15]
+; 504D:       A801             TEST AL, 1
+; 504F:       0F85B2010000     JNE L199
+; 5055:       A80F             TEST AL, 15
+; 5057:       750E             JNE L175
+; 5059:       48817EF111010000 CMP QWORD PTR [RSI-15], 273
+; 5061:       0F84A0010000     JEQ L199
+; 5067: L175: 8D46F1           LEA EAX, [RSI-15]
+; 506A:       A80F             TEST AL, 15
+; 506C:       750A             JNE L176
+; 506E:       807EF111         CMP BYTE PTR [RSI-15], 17
+; 5072:       0F8485010000     JEQ L198
+; 5078: L176: 8D46F1           LEA EAX, [RSI-15]
+; 507B:       A80F             TEST AL, 15
+; 507D:       750A             JNE L177
+; 507F:       807EF115         CMP BYTE PTR [RSI-15], 21
+; 5083:       0F846A010000     JEQ L197
+; 5089: L177: 4080FE19         CMP SIL, 25
+; 508D:       0F8456010000     JEQ L196
+; 5093:       8D46F1           LEA EAX, [RSI-15]
+; 5096:       A80F             TEST AL, 15
+; 5098:       750A             JNE L178
+; 509A:       807EF11D         CMP BYTE PTR [RSI-15], 29
+; 509E:       0F843B010000     JEQ L195
+; 50A4: L178: 8D46F1           LEA EAX, [RSI-15]
+; 50A7:       A80F             TEST AL, 15
+; 50A9:       750A             JNE L179
+; 50AB:       807EF125         CMP BYTE PTR [RSI-15], 37
+; 50AF:       0F8420010000     JEQ L194
+; 50B5: L179: 8D46F1           LEA EAX, [RSI-15]
+; 50B8:       A80F             TEST AL, 15
+; 50BA:       750A             JNE L180
+; 50BC:       807EF129         CMP BYTE PTR [RSI-15], 41
+; 50C0:       0F8405010000     JEQ L193
+; 50C6: L180: 8D46F1           LEA EAX, [RSI-15]
+; 50C9:       A80F             TEST AL, 15
+; 50CB:       750D             JNE L181
+; 50CD:       8B46F1           MOV EAX, [RSI-15]
+; 50D0:       2C21             SUB AL, 33
+; 50D2:       3C08             CMP AL, 8
+; 50D4:       0F86E7000000     JBE L192
+; 50DA: L181: 8D46B7           LEA EAX, [RSI-73]
+; 50DD:       A9FF80FFFF       TEST EAX, -32513
+; 50E2:       0F84CF000000     JEQ L191
+; 50E8:       4080FE49         CMP SIL, 73
+; 50EC:       750A             JNE L182
+; 50EE:       BAA6000000       MOV EDX, 166
+; 50F3:       E9D9F2FFFF       JMP L0
+; 50F8: L182: 8D46F5           LEA EAX, [RSI-11]
+; 50FB:       A80F             TEST AL, 15
+; 50FD:       0F84AA000000     JEQ L190
+; 5103:       4881FE17001050   CMP RSI, #x50100017            ; NIL
+; 510A:       740B             JEQ L183
+; 510C:       8D46F9           LEA EAX, [RSI-7]
+; 510F:       A80F             TEST AL, 15
+; 5111:       0F848C000000     JEQ L189
+; 5117: L183: 4881FE17001050   CMP RSI, #x50100017            ; NIL
+; 511E:       7479             JEQ L188
+; 5120:       8D46F1           LEA EAX, [RSI-15]
+; 5123:       A80F             TEST AL, 15
+; 5125:       7506             JNE L184
+; 5127:       807EF145         CMP BYTE PTR [RSI-15], 69
+; 512B:       746C             JEQ L188
+; 512D: L184: 8D46FD           LEA EAX, [RSI-3]
+; 5130:       A80F             TEST AL, 15
+; 5132:       7519             JNE L186
+; 5134:       8B4601           MOV EAX, [RSI+1]
+; 5137:       83780902         CMP DWORD PTR [RAX+9], 2
+; 513B:       7E08             JLE L185
+; 513D:       488B4025         MOV RAX, [RAX+37]
+; 5141:       488B4009         MOV RAX, [RAX+9]
+; 5145: L185: 483D83103050     CMP RAX, #x50301083            ; #<SB-KERNEL:LAYOUT for STRUCTURE-OBJECT {50301083}>
+; 514B:       7440             JEQ L187
+; 514D: L186: 4883EC10         SUB RSP, 16
+; 5151:       488B1520F1FFFF   MOV RDX, [RIP-3808]            ; #<SB-KERNEL::CLASSOID-CELL STANDARD-OBJECT>
+; 5158:       488BFE           MOV RDI, RSI
+; 515B:       B904000000       MOV ECX, 4
+; 5160:       48892C24         MOV [RSP], RBP
+; 5164:       488BEC           MOV RBP, RSP
+; 5167:       B8F806AE52       MOV EAX, #x52AE06F8            ; #<FDEFN SB-KERNEL:CLASSOID-CELL-TYPEP>
+; 516C:       FFD0             CALL RAX
+; 516E:       488B75F0         MOV RSI, [RBP-16]
+; 5172:       4881FA17001050   CMP RDX, #x50100017            ; NIL
+; 5179:       BAB0000000       MOV EDX, 176
+; 517E:       41BBB2000000     MOV R11D, 178
+; 5184:       490F44D3         CMOVEQ RDX, R11
+; 5188:       E944F2FFFF       JMP L0
+; 518D: L187: BAAE000000       MOV EDX, 174
+; 5192:       E93AF2FFFF       JMP L0
+; 5197:       EBAC             JMP L185
+; 5199: L188: BAAC000000       MOV EDX, 172
+; 519E:       E92EF2FFFF       JMP L0
+; 51A3: L189: BAAA000000       MOV EDX, 170
+; 51A8:       E924F2FFFF       JMP L0
+; 51AD: L190: BAA8000000       MOV EDX, 168
+; 51B2:       E91AF2FFFF       JMP L0
+; 51B7: L191: BAA4000000       MOV EDX, 164
+; 51BC:       E910F2FFFF       JMP L0
+; 51C1: L192: BAA2000000       MOV EDX, 162
+; 51C6:       E906F2FFFF       JMP L0
+; 51CB: L193: BAA0000000       MOV EDX, 160
+; 51D0:       E9FCF1FFFF       JMP L0
+; 51D5: L194: BA9E000000       MOV EDX, 158
+; 51DA:       E9F2F1FFFF       JMP L0
+; 51DF: L195: BA9C000000       MOV EDX, 156
+; 51E4:       E9E8F1FFFF       JMP L0
+; 51E9: L196: BA9A000000       MOV EDX, 154
+; 51EE:       E9DEF1FFFF       JMP L0
+; 51F3: L197: BA98000000       MOV EDX, 152
+; 51F8:       E9D4F1FFFF       JMP L0
+; 51FD: L198: BA96000000       MOV EDX, 150
+; 5202:       E9CAF1FFFF       JMP L0
+; 5207: L199: BA94000000       MOV EDX, 148
+; 520C:       E9C0F1FFFF       JMP L0
+; 5211: L200: BA92000000       MOV EDX, 146
+; 5216:       E9B6F1FFFF       JMP L0
+; 521B: L201: BA90000000       MOV EDX, 144
+; 5220:       E9ACF1FFFF       JMP L0
+; 5225:       CC0F             BREAK 15                       ; Invalid argument count trap
