@@ -289,10 +289,11 @@ type-of says ~a but there could be supertypes that are compatible to this functi
                    `(declare (type ,(upgraded-object-type val) ,var)))
                  vars
                  vals)
-       ,@(mapcar (lambda (var type)
-                   `(declare (type ,type ,var)))
-                 lexvars
-                 lexvars-types)
+       ,@(mappend (lambda (var type)
+                    (when type
+                      `((declare (type ,(cdr type) ,var)))))
+                  lexvars
+                  lexvars-types)
        ,@decls
        #-sbcl
        ,@(mapcar (lambda (var val)
@@ -328,7 +329,7 @@ type-of says ~a but there could be supertypes that are compatible to this functi
   (with-gensyms (table)
     
     (let* ((lexvars (set-difference (find-lexical-variables env) args))
-           (lexvars-types (mapcar (lambda (var) (cdr (assoc 'type (nth-value 2 (cltl2:variable-information var env)))))
+           (lexvars-types (mapcar (lambda (var) (assoc 'type (nth-value 2 (cltl2:variable-information var env))))
                                   lexvars))
            (widetags (make-gensym-list (length args))))
       
