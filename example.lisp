@@ -32,7 +32,7 @@
 (print (addp "a" 2.0d0 5.0))
 (print (addp "a" 2.0d0 5.0d0))
 
-;; bad example, sum is out of fixnum range for fixnum
+;; bad example, sum could be out of fixnum range for fixnum, ended up calling generic-+
 (defun sum (a)
   (specializing (a) (:verbose t)
     (declare (optimize (speed 3)))
@@ -40,6 +40,8 @@
       (loop for i from 1 below (length a)
          do (incf sum (aref a i)))
       sum)))
+
+;; (disassemble #'last-specialized-function)
 
 ;; better example, sum is specialized; when sum gets out of fixnum range,
 ;; it becomes a runtime error
@@ -51,14 +53,19 @@
          do (incf sum (aref a i)))
       sum)))
 
+;; (disassemble #'last-specialized-function)
+
 ;; There is no way to tell the compiler that the type of SUM is same as the type of the array!
+;; To truly solve this issue, you need the ability to derive the type of a variable from another variable.
+;; This is not available within common lisp, but if you hack LET/LET* it is possible.
+;; See https://github.com/numcl/numcl/blob/master/src/0specialops.lisp
 
 (print (sum #(1 1 1)))
 (print (sum (make-array 1000 :element-type 'fixnum :initial-element 1)))
 (print (sum (make-array 1000 :element-type 'single-float :initial-element 1.0)))
 (print (sum (make-array 1000 :element-type 'double-float :initial-element 1.0d0)))
 
-last-specialized-function
+;; (disassemble #'last-specialized-function)
 
 (defun dot-original (a b c)
   (declare (optimize (speed 3) (safety 0) (debug 0)))
