@@ -14,6 +14,8 @@ environment object to collect the list of all lexical variables.
 
 [[https://asciinema.org/a/RW5a3mKqAYvOTvBp3i1x5yqoK][https://asciinema.org/a/RW5a3mKqAYvOTvBp3i1x5yqoK.svg]]
 
+*NEWS* (2019/09/28): lexical variables NOT specialized by the user are type-annotated inside specialized-function based on the information available from cltl2.
+
 ** Why?
 
 Suppose computing a vector dot:

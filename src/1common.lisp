@@ -281,7 +281,7 @@ type-of says ~a but there could be supertypes that are compatible to this functi
               (type-of x)))))
 
 
-(defun specialized-function-form (vars lexvars decl-and-body vals)
+(defun specialized-function-form (vars lexvars lexvars-types decl-and-body vals)
   (multiple-value-bind (body decls) (parse-body decl-and-body)
     `(lambda (,@vars ,@lexvars)
        (declare (ignorable ,@lexvars))
@@ -289,6 +289,10 @@ type-of says ~a but there could be supertypes that are compatible to this functi
                    `(declare (type ,(upgraded-object-type val) ,var)))
                  vars
                  vals)
+       ,@(mapcar (lambda (var type)
+                   `(declare (type ,type ,var)))
+                 lexvars
+                 lexvars-types)
        ,@decls
        #-sbcl
        ,@(mapcar (lambda (var val)
@@ -323,8 +327,10 @@ type-of says ~a but there could be supertypes that are compatible to this functi
   (assert (typep verbose 'boolean))
   (with-gensyms (table)
     
-    (let ((lexvars (set-difference (find-lexical-variables env) args))
-          (widetags (make-gensym-list (length args))))
+    (let* ((lexvars (set-difference (find-lexical-variables env) args))
+           (lexvars-types (mapcar (lambda (var) (cdr (assoc 'type (nth-value 2 (cltl2:variable-information var env)))))
+                                  lexvars))
+           (widetags (make-gensym-list (length args))))
       
       `(let ((,table (load-time-value (table ,+table-size+)))
              ,@(mapcar (lambda (var arg)
@@ -338,7 +344,7 @@ type-of says ~a but there could be supertypes that are compatible to this functi
                       `(setf (symbol-function 'last-specialized-function)
                              (compile nil
                                       (specialized-function-form
-                                       ',args ',lexvars ',decl-and-body (list ,@args)))))
+                                       ',args ',lexvars ',lexvars-types ',decl-and-body (list ,@args)))))
                  (for default =
                       (cond
                         (rest `(table ,+table-size+))
