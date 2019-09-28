@@ -102,10 +102,9 @@ not able to pass values of lexical variables to the body inside =SPECIALIZED=.
 
 For array types, it dispatches based on the (upgraded) element
 type and the simpleness of the runtime array object.
-It *does not* dispatch
-based on the rank and the dimensions, and once the function was called with an array
-of a certain rank, then the later calls assume that *the arguments are
-of the same rank*. This is based on a heuristic that *the same code/algorithm
+It *does not* dispatch based on the *rank* and the *dimensions*.
+Also, once each function is called/compiled for the arrays of a certain rank,
+*this rank information is fixed*. This is based on a heuristic that *the same code/algorithm
 does not work for an array of the different ranks*. For example, it is unreasonable to
 assume that a code for matrix multiplication can process a 1D vector or a 3D tensor.
 
