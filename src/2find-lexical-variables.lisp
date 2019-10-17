@@ -21,6 +21,7 @@ NUMCL.  If not, see <http://www.gnu.org/licenses/>.
 
 (in-package :specialized-function)
 
+#+sbcl
 (defun find-lexical-variables (env)
   (remove-if
    (lambda (v)
@@ -35,5 +36,34 @@ NUMCL.  If not, see <http://www.gnu.org/licenses/>.
              (sb-c::coerce-to-lexenv env))))))
 
 
+;; see ccl:variable-information for details
 
+#+ccl
+(defun find-lexical-variables (env)
+  (labels ((rec (env)
+             (let ((vars (ccl::lexenv.variables env)))
+               (when (listp vars)
+                 (union (iter (for v in vars)
+                              (for bits = (ccl::var-bits v))
+                              (when (and (typep bits 'integer)
+			                 (not (logbitp ccl::$vbittemporary bits))
+			                 ;; (not (logbitp ccl::$vbitignoreunuused bits))
+			                 (not (logbitp ccl::$vbitignore bits))
+			                 (not (logbitp ccl::$vbitspecial bits))
+                                         )
+                                (collect (ccl::var-name v))))
+                        (rec (ccl::lexenv.parent-env env)))))))
+    (remove-duplicates (rec env))))
 
+#+(or)
+(defun fn (x y)
+  (declare (fixnum x))
+  (in-compile-time (env)
+    (print (find-lexical-variables env))
+    nil)
+  (print x)
+  (print y))
+
+#-(or sbcl ccl)
+(defun find-lexical-variables (env)
+  nil)

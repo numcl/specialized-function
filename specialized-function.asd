@@ -9,12 +9,7 @@
   :pathname "src"
   :components ((:file "0package")
                (:file "1common")
-               #+sbcl
-               (:file "2sbcl")
-               #+ccl
-               (:file "2ccl")
-               #-(or sbcl ccl)
-               (:file "2unsupported"))
+               (:file "2find-lexical-variables"))
   :description "Provides a Julia-like function that automatically compiles a type-specific version of the function from the same code"
   :in-order-to ((test-op (test-op :specialized-function.test)))
   ;; :defsystem-depends-on (:trivial-package-manager)
