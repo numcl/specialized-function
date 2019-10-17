@@ -64,6 +64,16 @@ NUMCL.  If not, see <http://www.gnu.org/licenses/>.
   (print x)
   (print y))
 
-#-(or sbcl ccl)
+#+lispworks
+(defun find-lexical-variables (env)
+  (let ((list nil))
+    (sys:map-environment env :variable
+                         #'(lambda (name kind info)
+                             (declare (ignore info))
+                             (when (eq kind :lexical)
+                               (push name list))))
+    (delete-duplicates (nreverse list))))
+
+#-(or sbcl ccl lispworks)
 (defun find-lexical-variables (env)
   nil)
