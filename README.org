@@ -6,7 +6,7 @@ that performs a Julia-like dispatch on the arguments, lazily compiling a
 type-specific version of the function from the same code.
 *The main target of this macro is the speed.*
 
-It supports SBCL and CCL and provides a limited support to other lisps.
+It supports SBCL, CCL, and LispWorks (untested), and provides a limited support to other lisps.
 On other lisps, the code inside =specialized= is not able to read
 the variables that are not specified to be the dispatched arguments.
 This is because it relies on the implementation-specific interface to the
