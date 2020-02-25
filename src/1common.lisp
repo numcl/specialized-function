@@ -117,6 +117,11 @@ NUMCL.  If not, see <http://www.gnu.org/licenses/>.
 
 ;; benchmark
 
+(defparameter *benchmark-size*
+  #+sbcl 1000000
+  #+ccl 10000
+  #-(or sbcl ccl) 10000)
+
 (defun benchmark ()
   (rebuild-widetag)
   (let ((array
@@ -165,7 +170,7 @@ NUMCL.  If not, see <http://www.gnu.org/licenses/>.
     (loop repeat 5
        do
          (time
-          (loop repeat #+sbcl 1000000 #+ccl 10000 do
+          (loop repeat (the fixnum *benchmark-size*) do
                (loop for e across array do
                     (widetag e)))))))
 
