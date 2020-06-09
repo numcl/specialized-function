@@ -1,6 +1,8 @@
 
 (in-package :specialized-function)
 
+(declaim (inline dot-original dot-specialized dot-handtuned))
+
 ;; untyped version
 (defun dot-original (a b c)
   (declare (optimize (speed 3) (safety 0) (debug 0)))
@@ -38,7 +40,9 @@
   #+sbcl
   (sb-ext:gc)
   #+ccl
-  (ccl:gc))
+  (ccl:gc)
+  #+ecl
+  (si:gc))
 
 (defun benchmark ()
   (let ((a (make-array 100000 :element-type 'single-float :initial-element 2.0))
