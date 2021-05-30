@@ -146,7 +146,8 @@
 #+sbcl
 (flet ((pair (name)
          (when-let ((s (find-symbol name :sb-vm)))
-           (cons (symbol-value s) s))))
+           (when (boundp s)
+             (cons (symbol-value s) s)))))
   (defparameter *widetags*
     (iter (for name in
                '("BIGNUM-WIDETAG"
