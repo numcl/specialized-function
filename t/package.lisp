@@ -144,65 +144,72 @@
 
 
 #+sbcl
-(macrolet ((pair (name) `(cons ,name ',name)))
+(flet ((pair (name)
+         (when-let ((s (find-symbol name :sb-vm)))
+           (cons (symbol-value s) s))))
   (defparameter *widetags*
-    (sort (list (pair SB-VM:BIGNUM-WIDETAG)
-                (pair SB-VM:CHARACTER-WIDETAG)
-                (pair SB-VM:CLOSURE-WIDETAG)
-                (pair SB-VM:CODE-HEADER-WIDETAG)
-                (pair SB-VM:COMPLEX-ARRAY-WIDETAG)                ; this is an array
-                (pair SB-VM:COMPLEX-BASE-STRING-WIDETAG)          ; this is an array
-                (pair SB-VM:COMPLEX-BIT-VECTOR-WIDETAG)           ; this is an array
-                (pair SB-VM:COMPLEX-CHARACTER-STRING-WIDETAG)     ; this is an array
-                (pair SB-VM:COMPLEX-DOUBLE-FLOAT-WIDETAG)         ; this is a complex number
-                (pair SB-VM:COMPLEX-SINGLE-FLOAT-WIDETAG)         ; this is a complex number
-                (pair SB-VM:COMPLEX-VECTOR-NIL-WIDETAG)           ; this is an array
-                (pair SB-VM:COMPLEX-VECTOR-WIDETAG)               ; this is an array
-                (pair SB-VM:COMPLEX-WIDETAG)                      ; this is a complex number
-                (pair SB-VM:DOUBLE-FLOAT-WIDETAG)
-                (pair SB-VM:FDEFN-WIDETAG)
-                (pair SB-VM:FILLER-WIDETAG)
-                (pair SB-VM:FUNCALLABLE-INSTANCE-WIDETAG)
-                (pair SB-VM:INSTANCE-WIDETAG)
-                (pair SB-VM:N-WIDETAG-BITS)
-                (pair SB-VM:NO-TLS-VALUE-MARKER-WIDETAG)
-                (pair SB-VM:RATIO-WIDETAG)
-                (pair SB-VM:SAP-WIDETAG)
-                (pair SB-VM:SIMD-PACK-256-WIDETAG)
-                (pair SB-VM:SIMD-PACK-WIDETAG)
-                (pair SB-VM:SIMPLE-ARRAY-COMPLEX-DOUBLE-FLOAT-WIDETAG)
-                (pair SB-VM:SIMPLE-ARRAY-COMPLEX-SINGLE-FLOAT-WIDETAG)
-                (pair SB-VM:SIMPLE-ARRAY-DOUBLE-FLOAT-WIDETAG)
-                (pair SB-VM:SIMPLE-ARRAY-FIXNUM-WIDETAG)
-                (pair SB-VM:SIMPLE-ARRAY-NIL-WIDETAG)
-                (pair SB-VM:SIMPLE-ARRAY-SIGNED-BYTE-16-WIDETAG)
-                (pair SB-VM:SIMPLE-ARRAY-SIGNED-BYTE-32-WIDETAG)
-                (pair SB-VM:SIMPLE-ARRAY-SIGNED-BYTE-64-WIDETAG)
-                (pair SB-VM:SIMPLE-ARRAY-SIGNED-BYTE-8-WIDETAG)
-                (pair SB-VM:SIMPLE-ARRAY-SINGLE-FLOAT-WIDETAG)
-                (pair SB-VM:SIMPLE-ARRAY-UNSIGNED-BYTE-15-WIDETAG)
-                (pair SB-VM:SIMPLE-ARRAY-UNSIGNED-BYTE-16-WIDETAG)
-                (pair SB-VM:SIMPLE-ARRAY-UNSIGNED-BYTE-2-WIDETAG)
-                (pair SB-VM:SIMPLE-ARRAY-UNSIGNED-BYTE-31-WIDETAG)
-                (pair SB-VM:SIMPLE-ARRAY-UNSIGNED-BYTE-32-WIDETAG)
-                (pair SB-VM:SIMPLE-ARRAY-UNSIGNED-BYTE-4-WIDETAG)
-                (pair SB-VM:SIMPLE-ARRAY-UNSIGNED-BYTE-63-WIDETAG)
-                (pair SB-VM:SIMPLE-ARRAY-UNSIGNED-BYTE-64-WIDETAG)
-                (pair SB-VM:SIMPLE-ARRAY-UNSIGNED-BYTE-7-WIDETAG)
-                (pair SB-VM:SIMPLE-ARRAY-UNSIGNED-BYTE-8-WIDETAG)
-                (pair SB-VM:SIMPLE-ARRAY-UNSIGNED-FIXNUM-WIDETAG)
-                (pair SB-VM:SIMPLE-ARRAY-WIDETAG)
-                (pair SB-VM:SIMPLE-BASE-STRING-WIDETAG)
-                (pair SB-VM:SIMPLE-BIT-VECTOR-WIDETAG)
-                (pair SB-VM:SIMPLE-CHARACTER-STRING-WIDETAG)
-                (pair SB-VM:SIMPLE-FUN-WIDETAG)
-                (pair SB-VM:SIMPLE-VECTOR-WIDETAG)
-                (pair SB-VM:SINGLE-FLOAT-WIDETAG)
-                (pair SB-VM:SYMBOL-WIDETAG)
-                (pair SB-VM:UNBOUND-MARKER-WIDETAG)
-                (pair SB-VM:VALUE-CELL-WIDETAG)
-                (pair SB-VM:WEAK-POINTER-WIDETAG))
-          #'< :key #'car))
+    (iter (for name in
+               '("BIGNUM-WIDETAG"
+                 "CHARACTER-WIDETAG"
+                 "CLOSURE-WIDETAG"
+                 "CODE-HEADER-WIDETAG"
+                 "COMPLEX-ARRAY-WIDETAG"                ; this is an array
+                 "COMPLEX-BASE-STRING-WIDETAG"          ; this is an array
+                 "COMPLEX-BIT-VECTOR-WIDETAG"           ; this is an array
+                 "COMPLEX-CHARACTER-STRING-WIDETAG"     ; this is an array
+                 "COMPLEX-DOUBLE-FLOAT-WIDETAG"         ; this is a complex number
+                 "COMPLEX-SINGLE-FLOAT-WIDETAG"         ; this is a complex number
+                 "COMPLEX-VECTOR-NIL-WIDETAG"           ; this is an array          2021/05/30 removed in sbcl-2.0.10 https://github.com/sbcl/sbcl/commit/8a2df46b46e3feb201c7f19096018a3f4b1c7d8a
+                 "COMPLEX-VECTOR-WIDETAG"               ; this is an array
+                 "COMPLEX-WIDETAG"                      ; this is a complex number
+                 "DOUBLE-FLOAT-WIDETAG"
+                 "FDEFN-WIDETAG"
+                 "FILLER-WIDETAG"
+                 "FUNCALLABLE-INSTANCE-WIDETAG"
+                 "INSTANCE-WIDETAG"
+                 "N-WIDETAG-BITS"
+                 "NO-TLS-VALUE-MARKER-WIDETAG"
+                 "RATIO-WIDETAG"
+                 "SAP-WIDETAG"
+                 "SIMD-PACK-256-WIDETAG"
+                 "SIMD-PACK-WIDETAG"
+                 "SIMPLE-ARRAY-COMPLEX-DOUBLE-FLOAT-WIDETAG"
+                 "SIMPLE-ARRAY-COMPLEX-SINGLE-FLOAT-WIDETAG"
+                 "SIMPLE-ARRAY-DOUBLE-FLOAT-WIDETAG"
+                 "SIMPLE-ARRAY-FIXNUM-WIDETAG"
+                 "SIMPLE-ARRAY-NIL-WIDETAG"
+                 "SIMPLE-ARRAY-SIGNED-BYTE-16-WIDETAG"
+                 "SIMPLE-ARRAY-SIGNED-BYTE-32-WIDETAG"
+                 "SIMPLE-ARRAY-SIGNED-BYTE-64-WIDETAG"
+                 "SIMPLE-ARRAY-SIGNED-BYTE-8-WIDETAG"
+                 "SIMPLE-ARRAY-SINGLE-FLOAT-WIDETAG"
+                 "SIMPLE-ARRAY-UNSIGNED-BYTE-15-WIDETAG"
+                 "SIMPLE-ARRAY-UNSIGNED-BYTE-16-WIDETAG"
+                 "SIMPLE-ARRAY-UNSIGNED-BYTE-2-WIDETAG"
+                 "SIMPLE-ARRAY-UNSIGNED-BYTE-31-WIDETAG"
+                 "SIMPLE-ARRAY-UNSIGNED-BYTE-32-WIDETAG"
+                 "SIMPLE-ARRAY-UNSIGNED-BYTE-4-WIDETAG"
+                 "SIMPLE-ARRAY-UNSIGNED-BYTE-63-WIDETAG"
+                 "SIMPLE-ARRAY-UNSIGNED-BYTE-64-WIDETAG"
+                 "SIMPLE-ARRAY-UNSIGNED-BYTE-7-WIDETAG"
+                 "SIMPLE-ARRAY-UNSIGNED-BYTE-8-WIDETAG"
+                 "SIMPLE-ARRAY-UNSIGNED-FIXNUM-WIDETAG"
+                 "SIMPLE-ARRAY-WIDETAG"
+                 "SIMPLE-BASE-STRING-WIDETAG"
+                 "SIMPLE-BIT-VECTOR-WIDETAG"
+                 "SIMPLE-CHARACTER-STRING-WIDETAG"
+                 "SIMPLE-FUN-WIDETAG"
+                 "SIMPLE-VECTOR-WIDETAG"
+                 "SINGLE-FLOAT-WIDETAG"
+                 "SYMBOL-WIDETAG"
+                 "UNBOUND-MARKER-WIDETAG"
+                 "VALUE-CELL-WIDETAG"
+                 "WEAK-POINTER-WIDETAG"))
+      (for pair = (pair name))
+      (when pair
+        (collecting pair into pairs))
+      (finally
+       (return (sort pairs #'< :key #'car)))))
   (format t "~{~a~%~}" *widetags*))
 
 #+sbcl
