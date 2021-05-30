@@ -15,11 +15,6 @@ env:
     - LISP=sbcl/2.1.4
     - LISP=sbcl/2.0.11
     - LISP=sbcl/1.5.9
-    - LISP=sbcl/1.4.16
-    - LISP=sbcl/1.3.21
-    - LISP=sbcl/1.2.16
-    - LISP=sbcl/1.1.18
-    - LISP=sbcl/1.0.58
 
 install:
   - curl -L https://raw.githubusercontent.com/snmsts/roswell/release/scripts/install-for-ci.sh | sh
