@@ -13,6 +13,8 @@ env:
     - ROSWELL_INSTALL_DIR=$HOME/.roswell
   matrix:
     - LISP=sbcl-bin
+    - LISP=sbcl-bin/2.0.11
+    - LISP=sbcl-bin/1.5.9
     - LISP=ccl-bin
     - LISP=abcl
     - LISP=clisp
